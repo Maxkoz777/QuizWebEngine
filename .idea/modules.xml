@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/QuizWebEngine.iml" filepath="$PROJECT_DIR$/QuizWebEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/quizwebengine.iml" filepath="$PROJECT_DIR$/backend/quizwebengine.iml" />
     </modules>
   </component>
 </project>

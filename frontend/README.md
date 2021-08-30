@@ -1,4 +1,4 @@
-# Quasar App (frontend)
+# quiz app
 
 A Quasar Framework app
 

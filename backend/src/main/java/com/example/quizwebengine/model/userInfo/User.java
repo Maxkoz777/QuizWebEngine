@@ -1,6 +1,9 @@
 package com.example.quizwebengine.model.userInfo;
 
+import com.example.quizwebengine.model.quiz.Quiz;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class User {
@@ -16,5 +19,7 @@ public class User {
     private Statistics statistics;
 
     private ContactInfo contactInfo;
+
+    private List<Quiz> createdQuizzes;
 
 }

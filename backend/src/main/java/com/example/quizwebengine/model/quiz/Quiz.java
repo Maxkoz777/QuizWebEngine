@@ -2,6 +2,8 @@ package com.example.quizwebengine.model.quiz;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class Quiz {
 
@@ -9,6 +11,6 @@ public class Quiz {
 
     private String title;
 
-    private Question[] questions;
+    private List<Question> questions;
 
 }

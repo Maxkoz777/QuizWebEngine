@@ -1,12 +1,8 @@
 package com.example.quizwebengine.model.quiz;
 
-import lombok.Data;
+public enum QuestionType {
 
-@Data
-public class QuestionType {
-
-    private long id;
-
-    private String type;
+    SINGLE_ANSWER,
+    MULTIPLE_ANSWER
 
 }

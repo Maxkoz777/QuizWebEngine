@@ -1,12 +1,9 @@
 package com.example.quizwebengine.model.userInfo;
 
-import lombok.Data;
+public enum Role {
 
-@Data
-public class Role {
-
-    private long id;
-
-    private String type;
+    ADMIN,
+    USER,
+    GUEST
 
 }

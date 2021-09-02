@@ -14,8 +14,6 @@ public class Statistics {
 
     private float answerAccuracy;
 
-    private QuestionType favouriteGameType;
-
     private long quizzesCreated;
 
     private long correctAnswers;

@@ -2,21 +2,24 @@ package com.example.quizwebengine.model.quiz;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Data
+@Entity
+@Table(name = "question")
 public class Question {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String text;
 
+    @OneToMany
     private List<Answer> answers;
 
-    private QuestionType questionType;
-
-    private boolean isAgeLimited;
-
-    private Quiz quiz;
+    @OneToOne
+    private Answer rightAnswer;
 
 }

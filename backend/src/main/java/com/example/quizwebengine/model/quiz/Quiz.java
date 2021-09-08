@@ -1,19 +1,22 @@
 package com.example.quizwebengine.model.quiz;
 
-import com.example.quizwebengine.model.userInfo.User;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Data
+@Entity
+@Table(name = "quiz")
 public class Quiz {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String title;
+    private String name;
 
+    @OneToMany
     private List<Question> questions;
-
-    private User author;
 
 }

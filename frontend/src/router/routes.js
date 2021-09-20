@@ -1,13 +1,15 @@
-
 const routes = [
   {
-    path: '/',
+    path: '/main',
     component: () => import('pages/Index.vue'),
     children: [
-      // { path: '', component: () => import('pages/Index.vue') }
-    ]
+      {path: 'register', component: () => import("components/SignUp/SignUpDialog")}
+    ],
   },
+  {
+    path: '/',
 
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

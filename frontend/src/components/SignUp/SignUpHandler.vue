@@ -1,6 +1,6 @@
 <template>
   <div>
-    <sign-up-button/>
+    <sign-up-button @setDialogOpen="setDialogOpen"/>
     <sign-up-dialog :is-dialog-open.sync="isDialogOpen"/>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   components: {SignUpDialog, SignUpButton},
   data() {
     return {
-      isDialogOpen: true
+      isDialogOpen: false
     }
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-<q-btn class="signup-button" unelevated rounded>
+<q-btn @click="$emit('setDialogOpen')" class="signup-button" unelevated rounded>
   Sign up
 </q-btn>
 </template>
@@ -11,8 +11,4 @@ name: "SignUpButton"
 </script>
 
 <style scoped>
-.signup-button{
-  background-color: #4B35A4;
-  color:white;
-}
 </style>

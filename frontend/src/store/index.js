@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import signing_up_module from "src/store/modules/signing_up_module";
+import signingUpModule from "src/store/modules/signingUpModule";
 Vue.use(Vuex)
 
 /*
@@ -16,7 +16,7 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      signing_up_module
+      signingUpModule
     },
 
     // enable strict mode (adds overhead!)

@@ -27,14 +27,18 @@ import javax.validation.Valid;
 @PreAuthorize("permitAll()")
 public class AuthController {
 
+    private final JWTTokenProvider jwtTokenProvider;
+    private final AuthenticationManager authenticationManager;
+    private final ResponseErrorValidation responseErrorValidation;
+    private final UserService userService;
+
     @Autowired
-    private JWTTokenProvider jwtTokenProvider;
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private ResponseErrorValidation responseErrorValidation;
-    @Autowired
-    private UserService userService;
+    public AuthController(JWTTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, ResponseErrorValidation responseErrorValidation, UserService userService) {
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.authenticationManager = authenticationManager;
+        this.responseErrorValidation = responseErrorValidation;
+        this.userService = userService;
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {

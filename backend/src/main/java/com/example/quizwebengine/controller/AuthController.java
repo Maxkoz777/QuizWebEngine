@@ -33,7 +33,10 @@ public class AuthController {
     private final UserService userService;
 
     @Autowired
-    public AuthController(JWTTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, ResponseErrorValidation responseErrorValidation, UserService userService) {
+    public AuthController(JWTTokenProvider jwtTokenProvider,
+                          AuthenticationManager authenticationManager,
+                          ResponseErrorValidation responseErrorValidation,
+                          UserService userService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
         this.responseErrorValidation = responseErrorValidation;

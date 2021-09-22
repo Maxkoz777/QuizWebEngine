@@ -1,5 +1,5 @@
 <template>
-  <index-page-layout/>
+    <index-page-layout/>
 </template>
 
 <script>

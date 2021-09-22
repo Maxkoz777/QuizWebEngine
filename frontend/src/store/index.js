@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import signingUpModule from "src/store/modules/signingUpModule";
+import loginModule from "src/store/modules/loginModule";
+import homeModule from "src/store/modules/homeModule";
+
 Vue.use(Vuex)
 
 /*
@@ -16,7 +19,9 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      signingUpModule
+      signingUpModule,
+      loginModule,
+      homeModule
     },
 
     // enable strict mode (adds overhead!)

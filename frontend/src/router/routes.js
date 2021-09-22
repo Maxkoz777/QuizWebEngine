@@ -3,12 +3,16 @@ const routes = [
     path: '/main',
     component: () => import('pages/Index.vue'),
     children: [
-      {path: 'register', component: () => import("components/SignUp/SignUpDialog")}
+      {path: 'register', component: () => import("components/SignUp/SignUpDialog")},
+      {path: 'login', component: () => import("components/Login/LoginDialog")},
     ],
   },
   {
     path: '/',
-
+    component: () => import('pages/HomePage'),
+    children: [
+       {path: '/', component: () => import("components/User/UserInfoSection")}
+    ]
   },
   // Always leave this as last one,
   // but you can also remove it

@@ -6,11 +6,11 @@ export default {
   actions: {
     async resisterUser(context, userData) {
       try {
-        console.log(userData)
-        const response = await axios.post(`http://localhost:8081/api/auth/signup`, userData)
+        const response = await axios.post(`api/auth/signup`, userData)
+        console.log(response)
         return true
       } catch (e) {
-        return false
+        return e
       }
     }
   },

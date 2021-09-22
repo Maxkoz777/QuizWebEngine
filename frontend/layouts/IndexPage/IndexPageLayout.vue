@@ -1,5 +1,7 @@
 <template>
   <div class="fullscreen index-page-color">
+    <!-- Sign In/ Sign Up routing   -->
+    <router-view/>
     <app-bar-layout/>
     <index-body-layout/>
   </div>

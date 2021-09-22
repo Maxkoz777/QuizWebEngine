@@ -1,10 +1,13 @@
 // app global css in SCSS form
 .index-page-color {
   background: linear-gradient(200.61deg, #4B35D5 5.83%, #B670E1 87.47%);
-  //transform: rotate(-90deg);
 }
 
-.signup-button {
+.user-page-color {
+  background: linear-gradient(68.61deg, #C2ACFF 13.87%, #F4F0FF 84.4%);
+}
+
+.accept-button {
   background-color: #4B35A4;
   color: white;
 }

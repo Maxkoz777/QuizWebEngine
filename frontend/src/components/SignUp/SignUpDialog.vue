@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="isOpen">
+  <q-dialog v-model="isOpenRoute">
     <q-card>
       <q-card-section>
         <div class="text-h6">Registration</div>
@@ -70,7 +70,7 @@
 
         <q-card-actions align="right" class="q-pa-md">
           <q-btn flat label="Reset" type="Reset" class="reset-button"/>
-          <q-btn flat label="Sign Up" type="submit" class="signup-button"/>
+          <q-btn flat label="Sign Up" type="submit" class="accept-button"/>
         </q-card-actions>
       </q-form>
 
@@ -83,9 +83,9 @@ import {mapActions} from 'vuex'
 
 export default {
   name: "SignUpDialog",
-  props: ['isDialogOpen'],
   data() {
     return {
+      isOpen: true,
       newUserData: {
         email: '',
         username: '',
@@ -96,29 +96,30 @@ export default {
       }
     }
   },
-  computed: {
-    isOpen: {
-      get() {
-        return this.isDialogOpen
-      },
-      set(val) {
-        this.$emit("update:isDialogOpen", val)
-      }
-    }
-  },
   methods: {
     ...mapActions({
       registerUser: 'signingUpModule/resisterUser'
     }),
     async onSubmit() {
-      await this.registerUser(this.newUserData)
+      const responseMessage = await this.registerUser(this.newUserData)
+      console.log(responseMessage)
     },
     resetNewUserData() {
       for (const regField in this.newUserData) {
-        this.newUserData[regField] = null
+        this.newUserData[regField] = ''
+      }
+    },
+  },
+  computed: {
+    isOpenRoute: {
+      get() {
+        return this.isOpen
+      },
+      set() {
+        this.$router.push('/main')
       }
     }
-  }
+  },
 }
 </script>
 

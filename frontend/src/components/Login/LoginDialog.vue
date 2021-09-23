@@ -1,8 +1,9 @@
 <template>
   <q-dialog v-model="isOpenRoute">
     <q-card>
-      <q-card-section>
+      <q-card-section class="row justify-between">
         <div class="text-h6">Login</div>
+        <div class="text-red-4 notify-text-size" v-if="loginFailed">Invalid Username or Password</div>
       </q-card-section>
       <q-separator/>
       <q-form
@@ -49,6 +50,7 @@ export default {
         username: '',
         password: ''
       },
+      loginFailed: false
     }
   },
   methods: {
@@ -56,7 +58,8 @@ export default {
       login: 'loginModule/login'
     }),
     async onSubmit() {
-      await this.login(this.userData)
+      const response = await this.login(this.userData)
+      this.loginFailed = !response
     },
     resetNewUserData() {
       for (const field in this.userData) {
@@ -85,5 +88,9 @@ export default {
 
 .login-input {
   width: 25vw;
+}
+
+.notify-text-size {
+  font-size: 0.7rem;
 }
 </style>

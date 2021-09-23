@@ -102,13 +102,25 @@ export default {
     }),
     async onSubmit() {
       const responseMessage = await this.registerUser(this.newUserData)
-      console.log(responseMessage)
+      if (responseMessage) {
+        this.showSignUpNotification('Registration done, welcome!', 'green')
+        this.$router.push('/main')
+      } else {
+        this.showSignUpNotification('Error in server, please try later', 'red')
+      }
     },
     resetNewUserData() {
       for (const regField in this.newUserData) {
         this.newUserData[regField] = ''
       }
     },
+    showSignUpNotification(message, color) {
+      this.$q.notify({
+        message: message,
+        color: color
+      })
+
+    }
   },
   computed: {
     isOpenRoute: {

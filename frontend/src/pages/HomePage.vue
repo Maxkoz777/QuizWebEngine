@@ -1,5 +1,5 @@
 <template>
-  <div class="fullscreen" v-if="userData">
+  <div class="fullscreen" v-if="!pending">
     <home-app-bar-layout/>
     <router-view/>
   </div>
@@ -15,11 +15,15 @@ import LoadingFrame from "components/Loading/LoadingFrameFullSize";
 
 export default {
   name: "HomePage",
+  data() {
+    return {
+      pending: true
+    }
+  },
   components: {LoadingFrame, HomeAppBarLayout},
   async created() {
-    console.log('created')
     this.user = await this.fetchUserData()
-    console.log(this.user)
+    this.pending = false
     !this.user ? this.$router.push('/main') : ''
   },
   methods: {
@@ -29,7 +33,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userData:'homeModule/userData'
+      userData: 'homeModule/userData'
     })
   }
 }

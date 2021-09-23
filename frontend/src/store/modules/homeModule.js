@@ -22,6 +22,7 @@ export default {
     },
     async logout(context) {
       await localStorage.removeItem('token')
+      axios.defaults.headers.common['Authorization'] = null
       await this.$router.push('/main')
     }
   },

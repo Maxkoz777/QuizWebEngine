@@ -1,8 +1,9 @@
 <template>
   <q-dialog v-model="isOpenRoute">
     <q-card>
-      <q-card-section>
+      <q-card-section class="row justify-between">
         <div class="text-h6">Registration</div>
+        <div class="text-red-4 notify-text-size">{{ passwordMatched }}</div>
       </q-card-section>
 
       <q-separator/>
@@ -73,13 +74,13 @@
           <q-btn flat label="Sign Up" type="submit" class="accept-button"/>
         </q-card-actions>
       </q-form>
-
     </q-card>
   </q-dialog>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
+import {validatePasswordsSimilarity} from "app/helpers"
 
 export default {
   name: "SignUpDialog",
@@ -93,7 +94,7 @@ export default {
         lastname: '',
         password: '',
         confirmPassword: ''
-      }
+      },
     }
   },
   methods: {
@@ -119,8 +120,7 @@ export default {
         message: message,
         color: color
       })
-
-    }
+    },
   },
   computed: {
     isOpenRoute: {
@@ -130,8 +130,11 @@ export default {
       set() {
         this.$router.push('/main')
       }
+    },
+    passwordMatched: function () {
+      return validatePasswordsSimilarity(this.newUserData.password, this.newUserData.confirmPassword) ? '' : 'Passwords do not match'
     }
-  },
+  }
 }
 </script>
 

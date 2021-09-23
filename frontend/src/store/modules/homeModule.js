@@ -22,7 +22,6 @@ export default {
     },
     async logout(context) {
       await localStorage.removeItem('token')
-      console.log('token removed')
       await this.$router.push('/main')
     }
   },

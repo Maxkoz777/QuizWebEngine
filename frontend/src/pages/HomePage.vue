@@ -17,8 +17,8 @@ export default {
   name: "HomePage",
   components: {LoadingFrame, HomeAppBarLayout},
   async created() {
-    //this.user = await this.fetchUserData()
-    //!this.user ? this.$router.push('/main') : ''
+    this.user = await this.fetchUserData()
+    !this.user ? this.$router.push('/main') : ''
   },
   methods: {
     ...mapActions({

@@ -15,7 +15,6 @@ export default {
       try {
         const response = await axios.get('api/user/')
         context.commit("setUserData", response.data)
-        console.log(response.data)
         return response.data
       } catch (e) {
         return false

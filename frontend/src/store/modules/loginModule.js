@@ -8,7 +8,7 @@ export default {
       try {
         const response = await axios.post(`api/auth/signin`, userData)
         await localStorage.setItem('token', response.data.token)
-        await context.dispatch('homeModule/fetchUserData', '', {root: true})
+        axios.defaults.headers.common['Authorization'] = response.data.token
         await this.$router.push('/')
         return true
       } catch (e) {

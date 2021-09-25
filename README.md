@@ -12,6 +12,9 @@ This application can help you to make you gamefy educational proccess.
 2. Passing quizzes.
 3. Rewieving quiz results.
 
+## :heavy_exclamation_mark: Frameworks
+TBL
+
 ## :heavy_exclamation_mark: Prerequisites
 TBL
 

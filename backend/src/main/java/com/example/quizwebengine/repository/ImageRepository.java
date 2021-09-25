@@ -9,6 +9,6 @@ public interface ImageRepository extends JpaRepository<ImageModel, Long> {
 
     Optional<ImageModel> findByUserId(Long id);
 
-    Optional<ImageModel> findByQuizId(Long id);
+    Optional<ImageModel> findByQuestionId(Long id);
 
 }

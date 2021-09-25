@@ -24,6 +24,6 @@ public class ImageModel {
     private Long userId;
 
     @JsonIgnore
-    private Long quizId;
+    private Long questionId;
 
 }

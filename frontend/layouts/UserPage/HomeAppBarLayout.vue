@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-sm home-appbar row justify-between items-center">
+  <div class="q-pa-xc home-appbar row justify-between items-center">
     <div class="text-h6 text-white q-pl-md">
       Quiz Web Engine
     </div>

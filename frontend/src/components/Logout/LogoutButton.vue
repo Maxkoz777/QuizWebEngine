@@ -1,6 +1,6 @@
 <template>
   <q-btn @click="logout">
-    logout
+    Signout
   </q-btn>
 </template>
 

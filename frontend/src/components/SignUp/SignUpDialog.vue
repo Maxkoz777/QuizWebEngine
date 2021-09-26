@@ -104,7 +104,7 @@ export default {
     async onSubmit() {
       const responseMessage = await this.registerUser(this.newUserData)
       if (responseMessage) {
-        this.showSignUpNotification('Registration done, welcome!', 'green')
+        this.showSignUpNotification('Registration done! Please sign in.', 'purple')
         this.$router.push('/main')
       } else {
         this.showSignUpNotification('Error in server, please try later', 'red')

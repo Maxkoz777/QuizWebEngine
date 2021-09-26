@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="bg-pin column items-end q-gutter-sm">
     <div>
-      <q-icon name="account_circle" style="font-size: 5.5em; color: #4B35A4;"/>
+      <q-icon name="account_circle" style="font-size: 6.5em; color: #4B35A4;"/>
     </div>
-    <div class="text-h6">
+    <div class="text-h5">
       {{ firstname + '  ' + lastname }}
     </div>
     <div>

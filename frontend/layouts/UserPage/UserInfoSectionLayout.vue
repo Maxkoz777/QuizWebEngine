@@ -1,9 +1,9 @@
 <template>
-  <div class="full-height user-page-color row">
-    <div class="half-width q-pa-lg row justify-center">
+  <div class="full-height user-page-color row q-pa-lg">
+    <div class="quizes-layout q-pa-lg row justify-center ">
       quizes
     </div>
-    <div class="half-width q-pa-lg row justify-center">
+    <div class="user-panel-container q-pa-lg row justify-end">
       <user-panel/>
     </div>
   </div>
@@ -19,7 +19,11 @@ export default {
 </script>
 
 <style scoped>
-.half-width {
-  width: 50%;
+.user-panel-container {
+  width: 40%;
+}
+
+.quizes-layout {
+  width: 60%
 }
 </style>

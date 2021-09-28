@@ -43,4 +43,15 @@ public class QuizController {
         }
     }
 
+    @PutMapping("/quiz/{quizId}")
+    public ResponseEntity<?> updateQuizData(@PathVariable(required = true) Long quizId,
+                                            @Valid @RequestBody QuizCreationRequest quizUpdateData) {
+        try {
+            quizService.updateQuizData(quizId, quizUpdateData.getName());
+            return ResponseEntity.ok(new MessageResponse("Quiz has been updated successfully"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
+    }
+
 }

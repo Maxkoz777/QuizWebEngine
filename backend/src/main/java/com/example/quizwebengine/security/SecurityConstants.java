@@ -5,6 +5,8 @@ public class SecurityConstants {
     // url for authorization
     public static final String SIGN_UP_URLS = "/api/auth/**";
 
+    public static final String GET_QUIZ_DATA = "/quiz/**";
+
     public static final String SECRET = "SecretKeyJWT";
 
     public static final String TOKEN_PREFIX = "Bearer ";

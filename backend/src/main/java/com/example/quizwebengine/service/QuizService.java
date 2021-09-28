@@ -20,7 +20,13 @@ public class QuizService {
     }
 
     public Quiz getDataAboutQuiz(long quizId) throws Exception {
-        return quizRepository.findById(quizId).orElseThrow(() -> new Exception("No such quiz"));
+        return quizRepository.findById(quizId).orElseThrow(() -> new Exception("No quiz with such id"));
+    }
+
+    public void updateQuizData(long quizId, String name) throws Exception {
+        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new Exception("No quiz with such id"));
+        quiz.setName(name);
+        quizRepository.save(quiz);
     }
 
 }

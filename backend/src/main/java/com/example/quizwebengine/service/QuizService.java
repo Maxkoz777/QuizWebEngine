@@ -29,4 +29,9 @@ public class QuizService {
         quizRepository.save(quiz);
     }
 
+    public void deleteQuizData(long quizId) throws Exception {
+        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new Exception("No quiz with such id"));
+        quizRepository.delete(quiz);
+    }
+
 }

@@ -54,4 +54,14 @@ public class QuizController {
         }
     }
 
+    @DeleteMapping("/quiz/{quizId}")
+    public ResponseEntity<?> deleteQuizData(@PathVariable(required = true) Long quizId) {
+        try {
+            quizService.deleteQuizData(quizId);
+            return ResponseEntity.ok(new MessageResponse("Quiz has been deleted successfully"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
+    }
+
 }

@@ -1,13 +1,19 @@
 package com.example.quizwebengine.model.quiz;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "quiz")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Quiz {
 
     @Id
@@ -19,4 +25,7 @@ public class Quiz {
     @OneToMany
     private List<Question> questions;
 
+    public Quiz(String name) {
+        this.name = name;
+    }
 }

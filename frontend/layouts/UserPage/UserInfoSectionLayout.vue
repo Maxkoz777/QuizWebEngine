@@ -1,9 +1,9 @@
 <template>
   <div class="full-height user-page-color row q-pa-lg">
     <div class="quizes-layout q-pa-lg row justify-center ">
-      quizes
+      <user-quizez-layout/>
     </div>
-    <div class="user-panel-container q-pa-lg row justify-end">
+    <div class="user-panel-container q-pa-md row justify-end">
       <user-panel/>
     </div>
   </div>
@@ -11,10 +11,11 @@
 
 <script>
 import UserPanel from "components/User/UserPanel";
+import UserQuizezLayout from "app/layouts/UserPage/UserQuizezLayout";
 
 export default {
   name: "UserInfoSectionLayout",
-  components: {UserPanel}
+  components: {UserQuizezLayout, UserPanel}
 }
 </script>
 

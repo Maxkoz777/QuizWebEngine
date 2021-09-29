@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-pin column items-end q-gutter-sm">
+  <div class="bg-pin column items-end q-gutter-sm q-pa-lg">
     <div>
       <q-icon name="account_circle" style="font-size: 6.5em; color: #4B35A4;"/>
     </div>

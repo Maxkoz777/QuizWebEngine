@@ -1,5 +1,5 @@
 <template>
-  <q-btn @click="logout">
+  <q-btn @click="logout" class="accept-button" flat>
     Signout
   </q-btn>
 </template>
@@ -8,7 +8,7 @@
 import {logout} from "src/mixins/logout";
 
 export default {
-  name: "LogoutButton",
+  name: "LogoutButtonMain",
   mixins: [logout]
 }
 </script>

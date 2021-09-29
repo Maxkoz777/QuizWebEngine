@@ -73,7 +73,6 @@ export default {
         return this.isOpen
       },
       set() {
-        //todo validate
         this.$router.push('/main')
       }
     }

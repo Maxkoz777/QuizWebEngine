@@ -3,6 +3,7 @@ package com.example.quizwebengine.model.userInfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "client")
 public class User implements UserDetails {
 
     @Id
@@ -47,15 +49,11 @@ public class User implements UserDetails {
 
     @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
     @Column(updatable = false)
-    private LocalDateTime createdDate;
+    @CreationTimestamp
+    private LocalDateTime creationTimestamp;
 
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
-
-    @PrePersist
-    protected void onCreate() {
-        createdDate = LocalDateTime.now();
-    }
 
     public User(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;

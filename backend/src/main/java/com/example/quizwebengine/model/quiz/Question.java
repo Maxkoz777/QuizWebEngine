@@ -17,7 +17,7 @@ public class Question {
 
     private String text;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 

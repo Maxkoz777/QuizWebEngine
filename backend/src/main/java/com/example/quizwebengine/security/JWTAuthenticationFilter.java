@@ -25,6 +25,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
+    public static String userIdKey = "userId";
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
@@ -38,6 +40,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 );
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                httpServletRequest.setAttribute(userIdKey, userId);
             }
         } catch (Exception exception) {
             logger.error("Couldn't set user authentication");

@@ -1,18 +1,25 @@
 package com.example.quizwebengine.model.quiz;
 
+import com.example.quizwebengine.payload.request.AnswerRequest;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "answer")
 public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     private String text;
+
+    public Answer(AnswerRequest answerRequest) {
+        text = answerRequest.getAnswerText();
+    }
 
 }

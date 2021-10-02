@@ -1,5 +1,6 @@
 package com.example.quizwebengine.model.userInfo;
 
+import com.example.quizwebengine.model.quiz.Quiz;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data

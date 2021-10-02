@@ -1,5 +1,6 @@
 package com.example.quizwebengine.model.quiz;
 
+import com.example.quizwebengine.model.userInfo.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,8 +23,12 @@ public class Quiz {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
     private List<Question> questions;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
     public Quiz(String name) {
         this.name = name;

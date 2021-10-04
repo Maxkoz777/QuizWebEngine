@@ -37,10 +37,10 @@ export default {
       }
     },
     async deleteQuiz(context, quizId) {
-      try{
+      try {
         await axios.delete(`quiz/${quizId}`)
         await context.dispatch('fetchQuizData')
-      }catch (e){
+      } catch (e) {
 
       }
     },
@@ -52,6 +52,10 @@ export default {
       } catch (e) {
         return false
       }
+    },
+    async visitQuiz(context, quizId) {
+      await context.dispatch('quizEditorModule/fetchQuizData', quizId , {root: true})
+      await this.$router.push(`quiz`)
     }
   },
   mutations: {

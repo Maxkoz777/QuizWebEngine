@@ -7,9 +7,12 @@
 
       <q-separator/>
       <div class="q-pt-md">
-        <div class="q-pr-md q-pl-md q-gutter-md">
+        <div class="q-pr-md q-pl-md q-gutter-md" v-if="quizList.length!==0">
           <quiz-list-item v-for="item in quizList" :name="item.name" :id="item.quizId" :key="item.quizId"
                           @deleteQuiz="deleteQuiz"/>
+        </div>
+        <div v-else class="q-pa-md">
+          No quizzes, create one!
         </div>
       </div>
       <q-card-section>
@@ -33,9 +36,9 @@ export default {
       createQuiz: 'homeModule/createQuiz'
     })
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      quizList:'homeModule/quizList'
+      quizList: 'homeModule/quizList'
     })
   }
 }

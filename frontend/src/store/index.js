@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import signingUpModule from "src/store/modules/signingUpModule";
 import loginModule from "src/store/modules/loginModule";
 import homeModule from "src/store/modules/homeModule";
+import quizEditorModule from "src/store/modules/quizEditorModule";
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ export default function (/* { ssrContext } */) {
     modules: {
       signingUpModule,
       loginModule,
-      homeModule
+      homeModule,
+      quizEditorModule
     },
 
     // enable strict mode (adds overhead!)

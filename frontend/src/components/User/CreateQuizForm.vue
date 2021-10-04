@@ -31,7 +31,6 @@ export default {
     async onCreate() {
       if ( await this.$emit('createQuiz', this.name)) {
         console.log('quiz created')
-        this.name=' '
       } else {
         console.log('error')
       }

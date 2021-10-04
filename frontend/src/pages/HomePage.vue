@@ -1,5 +1,5 @@
 <template>
-  <div class="fullscreen" v-if="!pending">
+  <div class="fullscreen main-container" v-if="!pending">
     <home-app-bar-layout/>
     <router-view/>
   </div>
@@ -40,5 +40,8 @@ export default {
 </script>
 
 <style scoped>
-
+.main-container{
+  display: grid;
+  grid-template-rows: 8% 92%;
+}
 </style>

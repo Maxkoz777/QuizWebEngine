@@ -25,13 +25,14 @@ public class QuestionService {
         this.quizRepository = quizRepository;
     }
 
-    public void createQuestion(QuestionRequest questionRequest, Long quizId) {
+    public Long createQuestion(QuestionRequest questionRequest, Long quizId) {
         Question question = new Question();
         question.setText(questionRequest.getQuestion());
         createAnswersForQuestion(questionRequest, question);
         Optional<Quiz> quiz = quizRepository.findById(quizId);
         quiz.ifPresent(question::setQuiz);
-        questionRepository.save(question);
+        Question question1 = questionRepository.save(question);
+        return question1.getId();
     }
 
     private void createAnswersForQuestion(QuestionRequest questionRequest, Question question) {

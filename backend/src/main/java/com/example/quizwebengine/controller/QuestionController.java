@@ -25,8 +25,8 @@ public class QuestionController {
     @PostMapping("/question/{quizId}")
     public ResponseEntity<?> createQuestion(@Valid @RequestBody QuestionRequest questionRequest, @PathVariable Long quizId) {
         try {
-            questionService.createQuestion(questionRequest, quizId);
-            return ResponseEntity.ok(new MessageResponse("Question has created successfully"));
+            Long id = questionService.createQuestion(questionRequest, quizId);
+            return ResponseEntity.ok(id);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }

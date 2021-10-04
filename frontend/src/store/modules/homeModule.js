@@ -9,13 +9,15 @@ export default {
       lastname: '',
       username: '',
       bio: ''
-    }
+    },
+    userQuizzes: []
   },
   actions: {
     async fetchUserData(context) {
       try {
         const response = await axios.get('api/user/')
         context.commit("setUserData", response.data)
+        await context.dispatch('fetchQuizData')
         return response.data
       } catch (e) {
         return false
@@ -25,11 +27,39 @@ export default {
       await localStorage.removeItem('token')
       axios.defaults.headers.common['Authorization'] = null
       await this.$router.push('/main')
+    },
+    async fetchQuizData(context) {
+      try {
+        const response = await axios.get('quiz/list')
+        context.commit('setQuizzesData', response.data.quizzes)
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async deleteQuiz(context, quizId) {
+      try{
+        await axios.delete(`quiz/${quizId}`)
+        await context.dispatch('fetchQuizData')
+      }catch (e){
+
+      }
+    },
+    async createQuiz(context, quizName) {
+      try {
+        await axios.post('quiz/', {name: quizName})
+        await context.dispatch('fetchQuizData')
+        return true
+      } catch (e) {
+        return false
+      }
     }
   },
   mutations: {
     setUserData(state, userData) {
       state.user = userData
+    },
+    setQuizzesData(state, quizzesData) {
+      state.userQuizzes = quizzesData
     }
   },
   getters: {
@@ -44,6 +74,9 @@ export default {
     },
     lastname(state) {
       return state.user.lastname
+    },
+    quizList(state) {
+      return state.userQuizzes
     }
   }
 }

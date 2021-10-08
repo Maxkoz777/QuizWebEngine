@@ -2,6 +2,8 @@ package com.example.quizwebengine.model.quiz;
 
 import lombok.Data;
 import lombok.Getter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class Question {
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> answers;
 
     @OneToOne

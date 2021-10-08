@@ -1,8 +1,10 @@
 package com.example.quizwebengine.controller;
 
+import com.example.quizwebengine.model.quiz.Question;
 import com.example.quizwebengine.payload.request.QuestionRequest;
 import com.example.quizwebengine.payload.response.CorrectAnswerResponse;
 import com.example.quizwebengine.payload.response.MessageResponse;
+import com.example.quizwebengine.payload.response.QuestionCreationResponse;
 import com.example.quizwebengine.payload.response.QuestionResponse;
 import com.example.quizwebengine.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -25,8 +28,18 @@ public class QuestionController {
     @PostMapping("/question/{quizId}")
     public ResponseEntity<?> createQuestion(@Valid @RequestBody QuestionRequest questionRequest, @PathVariable Long quizId) {
         try {
-            Long id = questionService.createQuestion(questionRequest, quizId);
-            return ResponseEntity.ok(id);
+            QuestionCreationResponse questionCreationResponse = new QuestionCreationResponse(questionService.createQuestion(questionRequest, quizId));
+            return ResponseEntity.ok(questionCreationResponse);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/question/{quizId}/list")
+    public ResponseEntity<?> getListOfQuestions(@PathVariable Long quizId) {
+        try {
+            List<QuestionResponse> questionResponseList = questionService.getListOfQuestionsForTheQuiz(quizId);
+            return ResponseEntity.ok(questionResponseList);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }

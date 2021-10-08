@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class CorrectAnswerResponse {
 
-    private Long questionId;
+    private Long answerId;
 
 }

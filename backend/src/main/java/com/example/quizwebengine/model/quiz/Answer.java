@@ -18,6 +18,10 @@ public class Answer {
 
     private String text;
 
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
+
     public Answer(AnswerRequest answerRequest) {
         text = answerRequest.getAnswerText();
     }

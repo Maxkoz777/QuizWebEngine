@@ -11,7 +11,9 @@ import com.example.quizwebengine.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionService {
@@ -35,6 +37,20 @@ public class QuestionService {
         return question1.getId();
     }
 
+    public List<QuestionResponse> getListOfQuestionsForTheQuiz(Long quizId) throws Exception {
+        return questionRepository.findAllByQuizId(quizId)
+                .orElseThrow(() -> new Exception("No question with such id"))
+                .stream().map(question -> {
+                    QuestionResponse questionResponse = new QuestionResponse();
+                    questionResponse.setQuestionId(question.getId());
+                    questionResponse.setQuestion(question.getText());
+                    questionResponse.setAnswer(question.getAnswers()
+                            .stream().map(answer -> new AnswerResponse(answer.getId(), answer.getText()))
+                            .collect(Collectors.toList()));
+                    return questionResponse;
+                }).collect(Collectors.toList());
+    }
+
     private void createAnswersForQuestion(QuestionRequest questionRequest, Question question) {
         questionRequest.getAnswer().forEach(answerRequest -> {
             Answer answer = new Answer(answerRequest);
@@ -47,7 +63,7 @@ public class QuestionService {
 
     public QuestionResponse getDataAboutQuestion(Long questionId) throws Exception {
         QuestionResponse questionResponse = new QuestionResponse();
-        Question question = questionRepository.findById(questionId).orElseThrow(() -> new Exception("No question with such id"));;
+        Question question = questionRepository.findById(questionId).orElseThrow(() -> new Exception("No question with such id"));
         questionResponse.setQuestionId(questionId);
         questionResponse.setQuestion(question.getText());
         question.getAnswers().forEach(answer -> {

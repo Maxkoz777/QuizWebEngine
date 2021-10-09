@@ -2,12 +2,21 @@
   <q-btn round
          icon="add"
          class="createQuestionButton q-mb-sm q-ml-md"
-         size="lg"/>
+         size="lg"
+         @click="createQuestion"
+  />
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
-  name: "CreateNewQuestion"
+  name: "CreateNewQuestion",
+  methods: {
+    ...mapActions({
+      createQuestion: 'quizEditorModule/createQuestion'
+    })
+  }
 }
 </script>
 

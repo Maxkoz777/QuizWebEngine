@@ -50,6 +50,7 @@ public class QuestionService {
                     QuestionResponse questionResponse = new QuestionResponse();
                     questionResponse.setQuestionId(question.getId());
                     questionResponse.setQuestion(question.getText());
+                    questionResponse.setRightAnswerId(question.getRightAnswer().getId());
                     questionResponse.setAnswer(question.getAnswers()
                             .stream().map(answer -> new AnswerResponse(answer.getId(), answer.getText()))
                             .collect(Collectors.toList()));
@@ -73,6 +74,7 @@ public class QuestionService {
         Question question = questionRepository.findById(questionId).orElseThrow(() -> new Exception("No question with such id"));
         questionResponse.setQuestionId(questionId);
         questionResponse.setQuestion(question.getText());
+        questionResponse.setRightAnswerId(question.getRightAnswer().getId());
         question.getAnswers().forEach(answer -> {
             questionResponse.getAnswer().add(new AnswerResponse(answer.getId(), answer.getText()));
         });

@@ -1,15 +1,14 @@
 <template>
-  <div class="shadow-2 nav-menu-container" bordered>
-    <div class="overflow-auto q-pt-md">
+  <div class="shadow-2 nav-menu-container" bordered style="overflow: hidden">
+    <div class="q-pt-md">
       <q-tabs
         vertical
         v-model="chosenQuestion"
         indicator-color="purple"
-
       >
         <q-tab v-for="questionTab in questions"
-               :key="questionTab.id"
-               :name="questionTab.id"
+               :key="questionTab.questionId"
+               :name="questionTab.questionId"
                @click="chooseQuestion(questionTab)"
                class="q-mt-md"
                no-caps

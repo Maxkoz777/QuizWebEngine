@@ -54,9 +54,8 @@ export default {
       }
     },
     async visitQuiz(context, quizId) {
-      await context.dispatch('quizEditorModule/fetchQuizData', quizId , {root: true})
-      await this.$router.push(`quiz`)
-    }
+      await this.$router.push(`quiz/${quizId}`)
+    },
   },
   mutations: {
     setUserData(state, userData) {

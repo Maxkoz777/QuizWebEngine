@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "productName": "Quiz web engine",
   "author": "AfanasevEvgeny <afazhenya2001@gmail.com>",
   "private": true,
   "scripts": {

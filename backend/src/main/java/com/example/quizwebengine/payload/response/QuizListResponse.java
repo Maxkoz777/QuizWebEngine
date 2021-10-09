@@ -13,11 +13,9 @@ public class QuizListResponse {
 
     public QuizListResponse(List<Quiz> quizzesList) {
         quizzes = new ArrayList<>();
-        quizzesList.forEach(quiz -> {
-            quizzes.add(
-                    new QuizDataResponse(quiz.getId(), quiz.getName(), quiz.getQuestions())
-            );
-        });
+        quizzesList.forEach(quiz -> quizzes.add(
+                new QuizDataResponse(quiz.getId(), quiz.getName(), quiz.getQuestions())
+        ));
     }
 
 }

@@ -120,7 +120,8 @@ export default {
       const question = await axios.get(`question/${questionId}`)
       return question.data
     },
-    chooseQuestion(context, question) {
+    async chooseQuestion(context, questionId) {
+      const question = await context.dispatch('fetchQuestion', questionId)
       context.commit('setCurrentQuestion', question)
     },
     async createQuestion(context) {
@@ -146,10 +147,7 @@ export default {
         ]
       })
       await context.dispatch('fetchQuizData', context.getters.quizId)
-      const question = await context.dispatch('fetchQuestion', newQuestion.data.questionId)
-      await context.dispatch('chooseQuestion', question)
-      console.log(question)
-
+      await context.dispatch('chooseQuestion', newQuestion.data.questionId)
     }
   },
   mutations: {

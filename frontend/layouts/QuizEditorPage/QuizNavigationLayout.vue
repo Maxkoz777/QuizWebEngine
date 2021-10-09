@@ -3,13 +3,12 @@
     <div class="q-pt-md">
       <q-tabs
         vertical
-        v-model="chosenQuestion"
+        v-model="currentQuestion_"
         indicator-color="purple"
       >
         <q-tab v-for="questionTab in questions"
                :key="questionTab.questionId"
                :name="questionTab.questionId"
-               @click="chooseQuestion(questionTab)"
                class="q-mt-md"
                no-caps
         >
@@ -40,7 +39,16 @@ export default {
     ...mapGetters({
       questions: 'quizEditorModule/questions',
       currentQuestion: 'quizEditorModule/currentQuestion',
-    })
+    }),
+    currentQuestion_: {
+      get: function () {
+        console.log(this.currentQuestion)
+        return this.currentQuestion ? this.currentQuestion.questionId : ''
+      },
+      set: function (val) {
+       this.chooseQuestion(val)
+      }
+    }
   },
   methods: {
     ...mapActions({

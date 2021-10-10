@@ -25,11 +25,12 @@ public class Question {
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Answer> answers;
 
-    private Long rightAnswerId;
+    @OneToOne
+    private Answer rightAnswer;
 
     public Question() {
         this.answers = new ArrayList<>();

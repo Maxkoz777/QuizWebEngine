@@ -51,7 +51,7 @@ class QuestionServiceTest {
         question.setText("QuestionText");
         Answer answer = new Answer();
         answer.setId(2L);
-        question.setRightAnswerId(answer.getId());
+        question.setRightAnswer(answer);
 
         questionRequest = new QuestionRequest();
         questionRequest.setQuestion("QuestionUpdatedText");
@@ -77,7 +77,7 @@ class QuestionServiceTest {
         questionStub.setQuiz(quiz);
         questionStub.setId(null);
         questionStub.setText(questionRequest.getQuestion());
-        questionStub.setRightAnswerId(null);
+        //questionStub.setRightAnswerId(null);
 
         when(questionRepository.save(questionStub)).thenReturn(questionStub);
 

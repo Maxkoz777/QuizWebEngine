@@ -15,10 +15,10 @@ web application that will be used by people to play quizzes on different subject
 for all others respectively.
 
 The main business goals are categorized as follows:
-1. **The reducing of Total Cost of Ownership.**
+1. **The reducing of Total Cost of Ownership**\
 This goal can be achieved through the following aspects such as managing flexibility
 and portability of our software, and reducing the costs of deployments and operations
-2. **Improving Capability/Quality of system.**
+2. **Improving Capability/Quality of system**\
 The development of platform and application maintenance will imply the permanent support of
 reliability and availability of system, increasing performance and functionality of system.
 
@@ -42,9 +42,9 @@ Installed Java 11 and Node.js
 - PSQL_DB_URL for DB url
 - PSQL_DB_USER for DB user
 - PSQL_DB_PASS for DB User's password
-4. Open directory Backend as maven project and start, open terminal and execute mvn clean install
-5. Open directory Frontend, Open terminal and write npm install, after that quasar dev
-6. Open localhost:8081
+4. Open directory Backend as maven project and start, open terminal and execute `mvn clean install`
+5. Open directory Frontend, Open terminal and write `npm install`, after that `quasar dev`
+6. Open `localhost:8081`
 
 ## :bookmark_tabs: Requirements
 - Glossary.
@@ -61,11 +61,13 @@ Installed Java 11 and Node.js
 - Dynamic view diagram
 
 ## :computer: Code
-- Lint
-- Test coverage
+- Lint\
+**TBA**
+- Test coverage\
+**TBA**
 
 ## :movie_camera: Demo
-TBL
+TBA
 
 ## :v: Credits
 This project was done by :

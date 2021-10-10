@@ -29,23 +29,11 @@ public class Question {
     @ToString.Exclude
     private List<Answer> answers;
 
-    private Long rightAnswerId;
+    @OneToOne
+    private Answer rightAnswer;
 
     public Question() {
         this.answers = new ArrayList<>();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Question question = (Question) o;
-        return Objects.equals(id, question.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
     }
 
 

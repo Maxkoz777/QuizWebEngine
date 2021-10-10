@@ -61,11 +61,13 @@ Installed Java 11 and Node.js
 - Dynamic view diagram
 
 ## :computer: Code
-- Lint
-- Test coverage
+- Lint\
+**TBA**
+- Test coverage\
+**TBA**
 
 ## :movie_camera: Demo
-TBL
+TBA
 
 ## :v: Credits
 This project was done by :

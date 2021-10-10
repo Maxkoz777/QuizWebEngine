@@ -58,7 +58,13 @@ class QuizServiceTest {
     }
 
     @Test
-    void getDataAboutQuiz() {
+    void getDataAboutQuiz() throws Exception {
+        when(quizRepository.findById(3L)).thenReturn(java.util.Optional.of(quiz));
+
+        service.getDataAboutQuiz(quiz.getId());
+
+        verify(quizRepository).findById(3L);
+
     }
 
     @Test

@@ -14,7 +14,6 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "quiz")
-@NoArgsConstructor
 @AllArgsConstructor
 public class Quiz {
 

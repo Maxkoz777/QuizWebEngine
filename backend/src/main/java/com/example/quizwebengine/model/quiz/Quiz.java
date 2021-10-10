@@ -28,25 +28,12 @@ public class Quiz {
     private List<Question> questions;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "userId")
     @ToString.Exclude
     private User user;
 
     public Quiz(String name) {
         this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Quiz quiz = (Quiz) o;
-        return Objects.equals(id, quiz.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
     }
 }

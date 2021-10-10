@@ -7,6 +7,8 @@ public class SecurityConstants {
 
     public static final String GET_QUIZ_DATA = "/quiz/**";
 
+    public static final String SWAGGER = "swagger-ui.html";
+
     public static final String GET_QUESTION_DATA = "/question/**";
 
     public static final String SECRET = "SecretKeyJWT";

@@ -36,13 +36,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
         user.getRoles().add(Role.CREATOR);
 
-        try {
-            log.info("Saving User {}", user.getUsername());
-            return userRepository.save(user);
-        } catch (Exception exception) {
-            log.error("Error during registration. {}", exception.getMessage());
-            throw new UserExistException("The user " + " already exist. Please, check the credentials");
-        }
+        log.info("Saving User {}", user.getUsername());
+        return userRepository.save(user);
     }
 
     public User updateUser(UserDTO userDTO, Principal principal) {

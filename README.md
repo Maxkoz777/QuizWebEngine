@@ -15,10 +15,10 @@ web application that will be used by people to play quizzes on different subject
 for all others respectively.
 
 The main business goals are categorized as follows:
-1. **The reducing of Total Cost of Ownership.**
+1. **The reducing of Total Cost of Ownership**\
 This goal can be achieved through the following aspects such as managing flexibility
 and portability of our software, and reducing the costs of deployments and operations
-2. **Improving Capability/Quality of system.**
+2. **Improving Capability/Quality of system**\
 The development of platform and application maintenance will imply the permanent support of
 reliability and availability of system, increasing performance and functionality of system.
 

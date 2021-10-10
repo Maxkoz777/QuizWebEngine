@@ -5,9 +5,9 @@
       <div v-for="answer in questionData.answer"
            :key=answer.answerText
            class="answer-indicator q-pa-xs wrong-answer"
-           :class="{'right-answer':answer.isRight}"
+           :class="{'right-answer':answer.answerId === questionData.rightAnswerId}"
       >
-        {{answer.answerText}}
+        {{ answer.answerText }}
       </div>
     </div>
   </div>
@@ -41,21 +41,24 @@ export default {
 
 .question-title {
   font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .answer-indicator {
   width: 40%;
   border-radius: 5px;
   font-size: 0.8em;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
 }
 
-.wrong-answer{
+.wrong-answer {
   background-color: #EE8585;
 }
-.right-answer{
+
+.right-answer {
   background-color: #D6FFFA;
 }
 </style>

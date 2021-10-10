@@ -1,20 +1,23 @@
 package com.example.quizwebengine.model.quiz;
 
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "question")
 public class Question {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String text;
 
@@ -22,13 +25,28 @@ public class Question {
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Answer> answers;
 
-    @OneToOne
-    private Answer rightAnswer;
+    private Long rightAnswerId;
 
     public Question() {
         this.answers = new ArrayList<>();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Question question = (Question) o;
+        return Objects.equals(id, question.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+
+
 }

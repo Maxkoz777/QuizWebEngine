@@ -13,6 +13,14 @@ import QuestionEditorLayout from "app/layouts/QuizEditorPage/QuestionEditorLayou
 export default {
   name: "QuizEditorSection",
   components: {QuestionEditorLayout, QuizNavigationLayout},
+  methods: {
+    ...mapActions({
+      fetchQuizData: 'quizEditorModule/fetchQuizData'
+    })
+  },
+  mounted() {
+    this.fetchQuizData(this.$route.params.id)
+  }
 }
 </script>
 

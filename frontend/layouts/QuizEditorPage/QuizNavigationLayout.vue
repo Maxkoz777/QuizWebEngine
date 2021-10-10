@@ -1,16 +1,17 @@
 <template>
-  <div class="shadow-2 nav-menu-container" bordered>
-    <div class="overflow-auto q-pt-md">
+  <div class="shadow-2 nav-menu-container" bordered style="overflow: hidden">
+    <div class="q-pt-md">
+      <div class="q-pl-md text-bold quiz-id-title">
+        Quiz PIN: {{quizId}}
+      </div>
       <q-tabs
         vertical
-        v-model="chosenQuestion"
+        v-model="currentQuestion_"
         indicator-color="purple"
-
       >
         <q-tab v-for="questionTab in questions"
-               :key="questionTab.id"
-               :name="questionTab.id"
-               @click="chooseQuestion(questionTab)"
+               :key="questionTab.questionId"
+               :name="questionTab.questionId"
                class="q-mt-md"
                no-caps
         >
@@ -41,7 +42,16 @@ export default {
     ...mapGetters({
       questions: 'quizEditorModule/questions',
       currentQuestion: 'quizEditorModule/currentQuestion',
-    })
+      quizId: 'quizEditorModule/quizId'
+    }),
+    currentQuestion_: {
+      get: function () {
+        return this.currentQuestion ? this.currentQuestion.questionId : ''
+      },
+      set: function (val) {
+        this.chooseQuestion(val)
+      }
+    }
   },
   methods: {
     ...mapActions({
@@ -55,5 +65,9 @@ export default {
 .nav-menu-container {
   display: grid;
   grid-template-rows:90% 10%;
+}
+
+.quiz-id-title {
+  color: #4B35A4;
 }
 </style>

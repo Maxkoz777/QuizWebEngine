@@ -12,8 +12,13 @@ const routes = [
     component: () => import('pages/HomePage'),
     children: [
       {path: '/', component: () => import("components/User/UserInfoSection")},
-      {path: '/quiz', component: () => import("components/Quiz/QuizEditorSection")}
+      {path: '/quiz/:id', component: () => import("components/Quiz/QuizEditorSection")}
     ]
+  },
+  {
+    path: '/game/:gameId',
+    component: () => import('pages/GamePage'),
+    children: []
   },
   // Always leave this as last one,
   // but you can also remove it

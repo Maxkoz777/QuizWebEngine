@@ -77,7 +77,6 @@ class QuestionServiceTest {
         questionStub.setQuiz(quiz);
         questionStub.setId(null);
         questionStub.setText(questionRequest.getQuestion());
-        //questionStub.setRightAnswerId(null);
 
         when(questionRepository.save(questionStub)).thenReturn(questionStub);
 

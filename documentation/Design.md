@@ -9,7 +9,19 @@
   ![Create quiz](/documentation/diagrams/create_quiz_diagram.png)
 
 ## SOLID pattern
-TBA
+- **S** - Single-responsibility Principle
+Every method and class is responsible for a certain task. Therefore, there are no long methods and no widely used services. For example, createAnswersForQuestion method create only answers for question, nothing more.
+
+- **O** - Open-closed Principle
+We created methods by extending, and we didn't modify existing ones.
+
+- **L** - Liskov Substitution Principle
+We used some methods from extended classes. That applies to this principle. We can use some methods from JpaRepository when use UserRepository for searching in database.
+
+- **I** - Interface Segregation Principle
+We implemented only those methods, which were used in other methods. There are no unused methods in repositories and services in our application.
+- **D** - Dependency Inversion Principle
+We used JPA Repositories, but we didn't depend on low-level DB connection.
 
 ## Design patterns
 - **Facade**\

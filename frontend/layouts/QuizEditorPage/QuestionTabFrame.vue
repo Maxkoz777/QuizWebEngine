@@ -41,6 +41,8 @@ export default {
 
 .question-title {
   font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .answer-indicator {

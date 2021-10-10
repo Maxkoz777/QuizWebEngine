@@ -15,7 +15,7 @@ import UserQuizzesLayout from "app/layouts/UserPage/UserQuizzesLayout";
 
 export default {
   name: "UserInfoSectionLayout",
-  components: {UserQuizzesLayout, UserPanel}
+  components: {UserQuizzesLayout, UserPanel},
 }
 </script>
 

@@ -10,7 +10,7 @@ export default {
     question: {
       currentQuestion: null
     },
-    isEditMode: false
+    isEditMode: false,
   },
   actions: {
     async fetchQuizData(context, quizId) {
@@ -98,9 +98,9 @@ export default {
     },
     quizId(state) {
       return state.quiz.currentQuizId
-    }, 
+    },
     editMode(state) {
       return state.isEditMode
-    }
+    },
   }
 }

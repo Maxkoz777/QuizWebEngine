@@ -1,6 +1,9 @@
 <template>
   <div class="shadow-2 nav-menu-container" bordered style="overflow: hidden">
     <div class="q-pt-md">
+      <div class="q-pl-md text-bold quiz-id-title">
+        Quiz PIN: {{quizId}}
+      </div>
       <q-tabs
         vertical
         v-model="currentQuestion_"
@@ -39,13 +42,14 @@ export default {
     ...mapGetters({
       questions: 'quizEditorModule/questions',
       currentQuestion: 'quizEditorModule/currentQuestion',
+      quizId: 'quizEditorModule/quizId'
     }),
     currentQuestion_: {
       get: function () {
         return this.currentQuestion ? this.currentQuestion.questionId : ''
       },
       set: function (val) {
-       this.chooseQuestion(val)
+        this.chooseQuestion(val)
       }
     }
   },
@@ -61,5 +65,9 @@ export default {
 .nav-menu-container {
   display: grid;
   grid-template-rows:90% 10%;
+}
+
+.quiz-id-title {
+  color: #4B35A4;
 }
 </style>

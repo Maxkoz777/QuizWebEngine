@@ -1,7 +1,10 @@
 package com.example.quizwebengine.service;
 
 import com.example.quizwebengine.dto.UserDTO;
+import com.example.quizwebengine.exceptions.UserExistException;
+import com.example.quizwebengine.model.userInfo.Role;
 import com.example.quizwebengine.model.userInfo.User;
+import com.example.quizwebengine.payload.request.SignupRequest;
 import com.example.quizwebengine.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -11,12 +14,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.security.Principal;
+import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -27,6 +32,9 @@ class UserServiceTest {
     @Mock
     UserRepository userRepository;
 
+    @Mock
+    BCryptPasswordEncoder encoder;
+
     @InjectMocks
     UserService service;
 
@@ -35,26 +43,52 @@ class UserServiceTest {
 
     User user;
     UserDTO userDTO;
+    SignupRequest request;
 
     @BeforeEach
     void setUp() {
 
         user = new User();
         userDTO = new UserDTO();
+        request = new SignupRequest();
+
         user.setUsername("username");
         user.setName("first");
         user.setLastname("last");
         user.setId(1L);
         user.setBio("bio");
+        user.setEmail("email");
 
         userDTO.setFirstname(user.getName());
         userDTO.setLastname(user.getLastname());
         userDTO.setBio(user.getBio());
 
+        request.setEmail(user.getEmail());
+        request.setFirstname(user.getName());
+        request.setLastname(user.getLastname());
+        request.setUsername(user.getUsername());
+        request.setPassword("password");
+
+
     }
 
     @Test
     void createUser() {
+        when(encoder.encode(anyString())).thenReturn(request.getPassword());
+        user.setId(null);
+        user.setBio(null);
+        user.setPassword("password");
+        user.setRoles(Collections.singleton(Role.CREATOR));
+        when(userRepository.save(user)).thenReturn(user);
+
+        User retrievedUser = service.createUser(request);
+
+        assertAll(
+                () -> verify(userRepository).save(user),
+                () -> assertEquals(retrievedUser, user)
+        );
+
+
     }
 
     @Test

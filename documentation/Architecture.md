@@ -1,11 +1,11 @@
-## Static view diagram
-Non-functional requirements:
+ ## Non-functional requirements:
 - Performance
 - Usability
 - Maintainability
 - Portability
 - Reliability
 
+## Static view diagram
 ![Static view](/documentation/diagrams/static_1.png)
 
 ## Dynamic view diagram

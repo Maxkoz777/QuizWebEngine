@@ -72,6 +72,7 @@ Check [Architecture](/documentation/Architecture.md) file to find:
 ## :link: Links
 - [Swagger](https://quizwebengineback.herokuapp.com/swagger-ui.html)
 - [Backend](https://quizwebengineback.herokuapp.com)
+- [Figma](https://www.figma.com/file/ZDGvE0XfUQobBqqStit8lj)
 
 ## :movie_camera: Demo
 ![Demo](/documentation/diagrams/Demo.gif)

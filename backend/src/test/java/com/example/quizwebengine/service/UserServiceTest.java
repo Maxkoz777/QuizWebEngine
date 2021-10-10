@@ -1,5 +1,6 @@
 package com.example.quizwebengine.service;
 
+import com.example.quizwebengine.dto.UserDTO;
 import com.example.quizwebengine.model.userInfo.User;
 import com.example.quizwebengine.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,16 +34,22 @@ class UserServiceTest {
     Principal mockPrincipal;
 
     User user;
+    UserDTO userDTO;
 
     @BeforeEach
     void setUp() {
 
         user = new User();
+        userDTO = new UserDTO();
         user.setUsername("username");
         user.setName("first");
         user.setLastname("last");
         user.setId(1L);
         user.setBio("bio");
+
+        userDTO.setFirstname(user.getName());
+        userDTO.setLastname(user.getLastname());
+        userDTO.setBio(user.getBio());
 
     }
 
@@ -52,6 +59,18 @@ class UserServiceTest {
 
     @Test
     void updateUser() {
+        when(userRepository.save(user)).thenReturn(user);
+        when(mockPrincipal.getName()).thenReturn("username");
+        when(userRepository.findUserByUsername(user.getUsername())).thenReturn(java.util.Optional.ofNullable(user));
+
+        User retrievedUser = service.updateUser(userDTO, mockPrincipal);
+
+        assertAll(
+                () -> verify(userRepository).findUserByUsername(user.getUsername()),
+                () -> verify(mockPrincipal).getName(),
+                () -> verify(userRepository).save(user),
+                () -> assertEquals(retrievedUser, user)
+        );
     }
 
     @Test
@@ -66,9 +85,6 @@ class UserServiceTest {
                 () -> verify(mockPrincipal).getName(),
                 () -> assertEquals(retrievedUser, user)
         );
-
-
-
     }
 
     @Test
@@ -81,6 +97,5 @@ class UserServiceTest {
                 () -> verify(userRepository).findUserById(user.getId()),
                 () -> assertEquals(retrievedUser, user)
         );
-
     }
 }

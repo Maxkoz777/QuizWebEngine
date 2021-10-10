@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white q-pa-lg quiz-entrance-container">
-    <q-input color="purple" label-color="dark-purple" class="quiz-input" filled label="Enter PIN"/>
-    <quiz-enter-button/>
+    <q-input color="purple" v-model="gamePin" label-color="dark-purple" class="quiz-input" filled label="Enter PIN"/>
+    <quiz-enter-button @clicked="submitPin"/>
 
   </div>
 </template>
@@ -11,7 +11,17 @@ import QuizEnterButton from "components/QuizEntrance/QuizEnterButton";
 
 export default {
   name: "QuizEntrance",
-  components: {QuizEnterButton}
+  components: {QuizEnterButton},
+  data() {
+    return {
+      gamePin: ''
+    }
+  },
+  methods: {
+    submitPin() {
+      console.log(this.gamePin)
+    }
+  }
 }
 </script>
 

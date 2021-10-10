@@ -98,7 +98,7 @@ export default {
     },
     quizId(state) {
       return state.quiz.currentQuizId
-    },
+    }, 
     editMode(state) {
       return state.isEditMode
     }

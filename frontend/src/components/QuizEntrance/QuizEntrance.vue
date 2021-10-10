@@ -8,6 +8,7 @@
 
 <script>
 import QuizEnterButton from "components/QuizEntrance/QuizEnterButton";
+import {mapActions} from 'vuex'
 
 export default {
   name: "QuizEntrance",
@@ -18,9 +19,28 @@ export default {
     }
   },
   methods: {
-    submitPin() {
-      console.log(this.gamePin)
+    ...mapActions({
+      validateQuizPin: 'gameModule/validateQuizPin',
+      removeQuizData:'gameModule/removeQuizData'
+    }),
+    async submitPin() {
+      let result =await this.validateQuizPin(this.gamePin)
+      if (result){
+        await this.$router.push(`/game/${this.gamePin}`)
+      }else {
+        this.showQuizEnterError()
+      }
+    },
+    showQuizEnterError () {
+      this.$q.notify({
+        message: 'There is no yet quiz with such PIN :(',
+        icon: 'announcement',
+        color:'red'
+      })
     }
+  },
+  mounted() {
+    this.removeQuizData()
   }
 }
 </script>

@@ -5,14 +5,14 @@
         Please, choose the question
       </div>
     </div>
-    <div class="row q-pa-md q-gutter-md reverse" v-if="currentQuestion">
+    <div class="row q-pa-md q-gutter-md reverse">
       <q-btn flat class="bordered-btn" @click="visitUserPage" no-caps>
         Exit
       </q-btn>
-      <q-btn class="accept-button" flat no-caps @click="setEditMode(true)" v-if="!editMode">
+      <q-btn class="accept-button" flat no-caps @click="setEditMode(true)" v-if="!editMode && currentQuestion">
         Edit
       </q-btn>
-      <q-btn class="delete-button" flat no-caps @click="deleteAndClose" v-if="!editMode">
+      <q-btn class="delete-button" flat no-caps @click="deleteAndClose" v-if="!editMode && currentQuestion">
         Delete
       </q-btn>
       <q-btn class="accept-button" flat no-caps @click="closeEditModeAndUpdate()" v-if="editMode">Save changes</q-btn>
@@ -110,6 +110,7 @@ export default {
       deleteQuestion: 'quizEditorModule/deleteQuestion'
     }),
     visitUserPage() {
+      this.clearQuestionDataForChange()
       this.$router.push('/')
     },
     setNewQuestionName(value, idx) {

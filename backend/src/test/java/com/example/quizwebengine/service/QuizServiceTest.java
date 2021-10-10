@@ -68,7 +68,17 @@ class QuizServiceTest {
     }
 
     @Test
-    void updateQuizData() {
+    void updateQuizData() throws Exception {
+        when(quizRepository.findById(3L)).thenReturn(java.util.Optional.of(quiz));
+        when(quizRepository.save(quiz)).thenReturn(quiz);
+
+        service.updateQuizData(quiz.getId(), "NewQuizName");
+
+        assertAll(
+                () -> verify(quizRepository).findById(3L),
+                () -> verify(quizRepository).save(quiz)
+        );
+
     }
 
     @Test

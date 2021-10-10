@@ -39,7 +39,7 @@ public class QuestionService {
         createAnswersForQuestion(questionRequest, question);
         Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new Exception("No quiz with such id"));
         question.setQuiz(quiz);
-        questionRepository.save(question);
+        question = questionRepository.save(question);
         return question.getId();
     }
 

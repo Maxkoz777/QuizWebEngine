@@ -33,14 +33,14 @@ public class QuestionService {
         this.answerRepository = answerRepository;
     }
 
-    public Long createQuestion(QuestionRequest questionRequest, Long quizId) {
+    public Long createQuestion(QuestionRequest questionRequest, Long quizId) throws Exception {
         Question question = new Question();
         question.setText(questionRequest.getQuestion());
         createAnswersForQuestion(questionRequest, question);
-        Optional<Quiz> quiz = quizRepository.findById(quizId);
-        quiz.ifPresent(question::setQuiz);
-        Question question1 = questionRepository.save(question);
-        return question1.getId();
+        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new Exception("No quiz with such id"));
+        question.setQuiz(quiz);
+        questionRepository.save(question);
+        return question.getId();
     }
 
     public List<QuestionResponse> getListOfQuestionsForTheQuiz(Long quizId) throws Exception {

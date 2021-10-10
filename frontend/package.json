@@ -7,20 +7,14 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
-    "test": "echo \"No test specified\" && exit 0",
-    "build": "quasar build",
-    "start": "node server.js",
-    "heroku-postbuild": "yarn && yarn build"
+    "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "chalk": "^4.1.2",
-    "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.6.5",
-    "express": "^4.17.1",
-    "quasar": "^1.0.0",
-    "serve-static": "^1.14.1"
+    "quasar": "^1.0.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",

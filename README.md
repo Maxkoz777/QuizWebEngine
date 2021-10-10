@@ -70,7 +70,7 @@ Check [Architecture](/documentation/Architecture.md) file to find:
 ![Test coverage](/documentation/diagrams/test_coverage.png)
 
 ## :link: Links
-- [Swagger](https://app.swaggerhub.com/apis/none-word/Quiz_Web_Engine/1.0.0)
+- [Swagger](https://quizwebengineback.herokuapp.com/swagger-ui.html)
 - [Backend](https://quizwebengineback.herokuapp.com)
 
 ## :movie_camera: Demo

@@ -1,7 +1,6 @@
 # UML Diagrams
 ## Class diagram
-![Class diagram](/documentation/diagrams/class_diagram_1.png)
-![Class diagram](/documentation/diagrams/class_diagram_2.png)
+![Class diagram](/documentation/diagrams/class_diagram.png)
 
 ### Sequence Diagram
 - Pass quiz diagram\

@@ -66,5 +66,6 @@ class CustomUserDetailsServiceTest {
 
     @Test
     void build() {
+        assertEquals(CustomUserDetailsService.build(user), user);
     }
 }

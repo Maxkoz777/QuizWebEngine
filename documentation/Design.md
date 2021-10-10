@@ -1,6 +1,6 @@
 # UML Diagrams
 ## Class diagram
-TBA
+![Class diagram](/documentation/diagrams/class_diagram.png)
 
 ### Sequence Diagram
 - Pass quiz diagram\

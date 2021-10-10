@@ -11,3 +11,6 @@ Non-functional requirements:
 
 ## Dynamic view diagram
 ![Dynamic view](/documentation/diagrams/dynamic.png)
+
+## Database diagram
+![Database](/documentation/diagrams/database.png)

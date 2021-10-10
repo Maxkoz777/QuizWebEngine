@@ -9,6 +9,7 @@ import com.example.quizwebengine.repository.AnswerRepository;
 import com.example.quizwebengine.repository.QuestionRepository;
 import com.example.quizwebengine.repository.QuizRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -49,7 +50,7 @@ class QuestionServiceTest {
         question.setText("QuestionText");
         Answer answer = new Answer();
         answer.setId(2L);
-        question.setRightAnswer(answer);
+        question.setRightAnswerId(answer.getId());
 
         questionRequest = new QuestionRequest();
         questionRequest.setQuestion("QuestionUpdatedText");
@@ -60,17 +61,30 @@ class QuestionServiceTest {
         questionRequest.setAnswer(Arrays.asList(right, wrong));
 
         quiz = new Quiz();
+        quiz.setId(3L);
 
     }
 
     @Test
-    void createQuestion() {
-        when(quizRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(quiz));
+    void createQuestion() throws Exception {
+        when(quizRepository.findById(3L)).thenReturn(java.util.Optional.ofNullable(quiz));
 
-        service.createQuestion(questionRequest, 3L);
+        Question questionStub = new Question();
+        questionStub.setQuiz(quiz);
+        questionStub.setId(null);
+        questionStub.setText(questionRequest.getQuestion());
+        questionStub.setRightAnswerId(null);
 
+        when(questionRepository.save(questionStub)).thenReturn(questionStub);
 
-        verify(quizRepository).findById(1L);
+        Long newQuestionId = service.createQuestion(questionRequest, 3L);
+
+        assertAll(
+                () -> verify(quizRepository).findById(3L),
+                () -> verify(questionRepository).save(questionStub),
+                () -> assertNull(newQuestionId)
+        );
+
     }
 
     @Test

@@ -42,7 +42,6 @@ export default {
     }),
     currentQuestion_: {
       get: function () {
-        console.log(this.currentQuestion)
         return this.currentQuestion ? this.currentQuestion.questionId : ''
       },
       set: function (val) {

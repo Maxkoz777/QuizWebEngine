@@ -5,103 +5,14 @@ export default {
   state: {
     quiz: {
       currentQuizId: null,
-      questions: [
-        // {
-        //   "question": "What is i-node?",
-        //   id: '1',
-        //   "answer": [
-        //     {
-        //       "answerText": "1",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "2",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "3",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "4",
-        //       "isRight": true
-        //     }
-        //   ]
-        // },
-        // {
-        //   "question": "What is j-node?",
-        //   id: '2',
-        //   "answer": [
-        //     {
-        //       "answerText": "ddsdasdadsdassss1",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "2",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "3",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "4",
-        //       "isRight": true
-        //     }
-        //   ]
-        // },
-        // {
-        //   "question": "What is j-node?",
-        //   id: '3',
-        //   "answer": [
-        //     {
-        //       "answerText": "ddsdasdadsdassss1",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "2",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "3",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "4",
-        //       "isRight": true
-        //     }
-        //   ]
-        // },
-        // {
-        //   "question": "What is j-node?",
-        //   id: '4',
-        //   "answer": [
-        //     {
-        //       "answerText": "ddsdasdadsdassss1",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "2",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "3",
-        //       "isRight": false
-        //     },
-        //     {
-        //       "answerText": "4",
-        //       "isRight": true
-        //     }
-        //   ]
-        // }
-      ]
+      questions: []
     },
     question: {
       currentQuestion: null
-    }
+    },
+    isEditMode: false
   },
   actions: {
-
     async fetchQuizData(context, quizId) {
       const response = await axios.get(`quiz/${quizId}`)
 
@@ -121,7 +32,7 @@ export default {
       return question.data
     },
     async chooseQuestion(context, questionId) {
-      const question = await context.dispatch('fetchQuestion', questionId)
+      const question =questionId? await context.dispatch('fetchQuestion', questionId):''
       context.commit('setCurrentQuestion', question)
     },
     async createQuestion(context) {
@@ -148,6 +59,20 @@ export default {
       })
       await context.dispatch('fetchQuizData', context.getters.quizId)
       await context.dispatch('chooseQuestion', newQuestion.data.questionId)
+    },
+    setEditMode(context, val) {
+      context.commit('setEditMode', val)
+    },
+    async updateQuestions(context, newQuestionsData) {
+      await axios.put(`question/${context.getters.currentQuestion.questionId}`, newQuestionsData)
+      await context.dispatch('fetchQuizData', context.getters.quizId)
+      await context.dispatch('chooseQuestion', context.getters.currentQuestion.questionId)
+    },
+    async deleteQuestion(context) {
+      await axios.delete(`question/${context.getters.currentQuestion.questionId}`)
+      await context.dispatch('fetchQuizData', context.getters.quizId)
+      await context.dispatch('chooseQuestion', null)
+      console.log('delete')
     }
   },
   mutations: {
@@ -160,6 +85,9 @@ export default {
     setCurrentQuestion(state, question) {
       state.question.currentQuestion = question
     },
+    setEditMode(state, val) {
+      state.isEditMode = val
+    }
   },
   getters: {
     questions(state) {
@@ -170,6 +98,9 @@ export default {
     },
     quizId(state) {
       return state.quiz.currentQuizId
+    }, 
+    editMode(state) {
+      return state.isEditMode
     }
   }
 }

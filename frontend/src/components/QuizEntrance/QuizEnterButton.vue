@@ -1,12 +1,17 @@
 <template>
-  <q-btn class="full-width quiz-entrance-button q-mt-sm" unelevated>
+  <q-btn class="full-width quiz-entrance-button q-mt-sm" unelevated @click="clicked">
     ENTER
   </q-btn>
 </template>
 
 <script>
 export default {
-  name: "QuizEnterButton"
+  name: "QuizEnterButton",
+  methods: {
+    clicked() {
+      this.$emit('clicked')
+    }
+  }
 }
 </script>
 

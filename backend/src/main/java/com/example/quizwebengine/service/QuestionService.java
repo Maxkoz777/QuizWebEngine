@@ -75,9 +75,7 @@ public class QuestionService {
         questionResponse.setQuestionId(questionId);
         questionResponse.setQuestion(question.getText());
         questionResponse.setRightAnswerId(question.getRightAnswer().getId());
-        question.getAnswers().forEach(answer -> {
-            questionResponse.getAnswer().add(new AnswerResponse(answer.getId(), answer.getText()));
-        });
+        question.getAnswers().forEach(answer -> questionResponse.getAnswer().add(new AnswerResponse(answer.getId(), answer.getText())));
         return questionResponse;
     }
 

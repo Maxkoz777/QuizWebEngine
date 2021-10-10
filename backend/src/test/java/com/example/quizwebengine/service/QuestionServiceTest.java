@@ -20,6 +20,7 @@ import org.powermock.api.mockito.PowerMockito;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -63,6 +64,9 @@ class QuestionServiceTest {
         quiz = new Quiz();
         quiz.setId(3L);
 
+        question.setQuiz(quiz);
+        question.setAnswers(List.of(answer));
+
     }
 
     @Test
@@ -88,7 +92,14 @@ class QuestionServiceTest {
     }
 
     @Test
-    void getListOfQuestionsForTheQuiz() {
+    void getListOfQuestionsForTheQuiz() throws Exception {
+        ArrayList<Question> questions = new ArrayList<>(List.of(question));
+
+        when(questionRepository.findAllByQuizId(3L)).thenReturn(java.util.Optional.of(questions));
+
+        service.getListOfQuestionsForTheQuiz(3L);
+
+        verify(questionRepository).findAllByQuizId(3L);
     }
 
     @Test

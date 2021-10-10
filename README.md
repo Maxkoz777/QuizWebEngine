@@ -47,16 +47,19 @@ Installed Java 11 and Node.js
 6. Open `localhost:8081`
 
 ## :bookmark_tabs: Requirements
+Check [Requirements](/documentation/Requirements.md) file to find:
 - Glossary.
 - Stakeholders Roles.
 - User stories.
 - Non-functional requirements.
 
 ## :art: Design
+Check [Design](/documentation/Design.md) file to find:
 - UM diagrams (Class and Sequence).
 - SOLID and Design patterns usage.
 
 ## :hammer: Architecture
+Check [Architecture](/documentation/Architecture.md) file to find:
 - Static view diagram
 - Dynamic view diagram
 

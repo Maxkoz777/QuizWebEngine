@@ -1,5 +1,6 @@
 package com.example.quizwebengine.service;
 
+import com.example.quizwebengine.model.quiz.Question;
 import com.example.quizwebengine.model.quiz.Quiz;
 import com.example.quizwebengine.model.userInfo.User;
 import com.example.quizwebengine.repository.QuizRepository;
@@ -11,6 +12,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -94,6 +98,14 @@ class QuizServiceTest {
     }
 
     @Test
-    void getListOfQuizzes() {
+    void getListOfQuizzes() throws Exception {
+        ArrayList<Quiz> quizzes = new ArrayList<>(List.of(quiz));
+
+        when(quizRepository.findAllByUserId(user.getId())).thenReturn(java.util.Optional.of(quizzes));
+
+        service.getListOfQuizzes(user.getId());
+
+        verify(quizRepository).findAllByUserId(user.getId());
+
     }
 }

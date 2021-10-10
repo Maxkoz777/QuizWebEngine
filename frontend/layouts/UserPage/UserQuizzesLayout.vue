@@ -33,13 +33,17 @@ export default {
   methods: {
     ...mapActions({
       deleteQuiz: 'homeModule/deleteQuiz',
-      createQuiz: 'homeModule/createQuiz'
+      createQuiz: 'homeModule/createQuiz',
+      chooseQuestion: 'quizEditorModule/chooseQuestion'
     })
   },
   computed: {
     ...mapGetters({
       quizList: 'homeModule/quizList'
     })
+  },
+  mounted() {
+    this.chooseQuestion(null)
   }
 }
 </script>

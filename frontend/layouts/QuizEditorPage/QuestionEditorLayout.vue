@@ -107,10 +107,12 @@ export default {
     ...mapActions({
       setEditMode: 'quizEditorModule/setEditMode',
       updateQuestions: 'quizEditorModule/updateQuestions',
-      deleteQuestion: 'quizEditorModule/deleteQuestion'
+      deleteQuestion: 'quizEditorModule/deleteQuestion',
+      chooseQuestion: 'quizEditorModule/chooseQuestion'
     }),
     visitUserPage() {
       this.clearQuestionDataForChange()
+      this.chooseQuestion(null)
       this.$router.push('/')
     },
     setNewQuestionName(value, idx) {

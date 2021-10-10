@@ -1,12 +1,16 @@
 package com.example.quizwebengine.model.quiz;
 
 import com.example.quizwebengine.payload.request.AnswerRequest;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @NoArgsConstructor
 @Table(name = "answer")
@@ -26,4 +30,16 @@ public class Answer {
         text = answerRequest.getAnswerText();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Answer answer = (Answer) o;
+        return Objects.equals(id, answer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

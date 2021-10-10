@@ -1,18 +1,17 @@
 package com.example.quizwebengine.model.quiz;
 
 import com.example.quizwebengine.model.userInfo.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "quiz")
 @NoArgsConstructor
@@ -26,14 +25,29 @@ public class Quiz {
     private String name;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Question> questions;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
+    @ToString.Exclude
     private User user;
 
     public Quiz(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Quiz quiz = (Quiz) o;
+        return Objects.equals(id, quiz.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }

@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.security.Principal;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,6 +28,9 @@ class UserServiceTest {
 
     @InjectMocks
     UserService service;
+
+    @Mock
+    Principal mockPrincipal;
 
     User user;
 
@@ -50,6 +56,19 @@ class UserServiceTest {
 
     @Test
     void getCurrentUser() {
+        when(mockPrincipal.getName()).thenReturn("username");
+        when(userRepository.findUserByUsername(user.getUsername())).thenReturn(java.util.Optional.ofNullable(user));
+
+        User retrievedUser = service.getCurrentUser(mockPrincipal);
+
+        assertAll(
+                () -> verify(userRepository).findUserByUsername(user.getUsername()),
+                () -> verify(mockPrincipal).getName(),
+                () -> assertEquals(retrievedUser, user)
+        );
+
+
+
     }
 
     @Test

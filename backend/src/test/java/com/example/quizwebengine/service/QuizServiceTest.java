@@ -82,7 +82,15 @@ class QuizServiceTest {
     }
 
     @Test
-    void deleteQuizData() {
+    void deleteQuizData() throws Exception {
+        when(quizRepository.findById(3L)).thenReturn(java.util.Optional.of(quiz));
+
+        service.deleteQuizData(quiz.getId());
+
+        assertAll(
+                () -> verify(quizRepository).findById(3L),
+                () -> verify(quizRepository).delete(quiz)
+        );
     }
 
     @Test

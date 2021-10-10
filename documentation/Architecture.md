@@ -7,10 +7,12 @@ Non-functional requirements:
 - Reliability
 
 ![Static view](/documentation/diagrams/static_1.png)
-![Static view](/documentation/diagrams/static_2.png)
+![Legend](/documentation/diagrams/legend.png)
 
 ## Dynamic view diagram
-![Dynamic view](/documentation/diagrams/dynamic.png)
+![Dynamic view](/documentation/diagrams/dynamic_2.png)
+![Dynamic view](/documentation/diagrams/dynamic_1.png)
+
 
 ## Database diagram
 ![Database](/documentation/diagrams/database.png)

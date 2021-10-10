@@ -1,4 +1,7 @@
 # QuizWebEngine
+## Glossary
+
+
 ## :wave: About this project
 This are a user-generated quizzes that can be accessed via a web browser. It can be used as learning-based platform to review students' knowledge. Using this platform you can create you own quiz and utilities in educational affairs.
 
@@ -10,7 +13,7 @@ This application can help you to make you gamefy educational proccess.
 ## :fire: Features
 1. Creating quizzes.
 2. Passing quizzes.
-3. Rewieving quiz results.
+3. Showing leaderboard after the quiz.
 
 ## :heavy_exclamation_mark: Frameworks
 TBL

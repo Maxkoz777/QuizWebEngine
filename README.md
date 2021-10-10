@@ -42,9 +42,9 @@ Installed Java 11 and Node.js
 - PSQL_DB_URL for DB url
 - PSQL_DB_USER for DB user
 - PSQL_DB_PASS for DB User's password
-4. Open directory Backend as maven project and start, open terminal and execute mvn clean install
-5. Open directory Frontend, Open terminal and write npm install, after that quasar dev
-6. Open localhost:8081
+4. Open directory Backend as maven project and start, open terminal and execute `mvn clean install`
+5. Open directory Frontend, Open terminal and write `npm install`, after that `quasar dev`
+6. Open `localhost:8081`
 
 ## :bookmark_tabs: Requirements
 - Glossary.

@@ -65,12 +65,16 @@ Check [Architecture](/documentation/Architecture.md) file to find:
 
 ## :computer: Code
 - Lint\
-**TBA**
+![Lint](/documentation/diagrams/lint.png)
 - Test coverage\
-**TBA**
+![Test coverage](/documentation/diagrams/test_coverage.png)
+
+## :link: Links
+- [Swagger](https://app.swaggerhub.com/apis/none-word/Quiz_Web_Engine/1.0.0)
+- [Backend](https://quizwebengineback.herokuapp.com)
 
 ## :movie_camera: Demo
-TBA
+![Demo](/documentation/diagrams/Demo.gif)
 
 ## :v: Credits
 This project was done by :

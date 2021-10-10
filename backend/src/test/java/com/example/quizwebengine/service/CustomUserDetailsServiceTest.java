@@ -8,8 +8,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CustomUserDetailsServiceTest {
@@ -37,6 +41,15 @@ class CustomUserDetailsServiceTest {
 
     @Test
     void loadUserByUsername() {
+        when(userRepository.findUserByEmail(user.getUsername())).thenReturn(java.util.Optional.ofNullable(user));
+
+        UserDetails userDetails = service.loadUserByUsername(user.getUsername());
+
+        assertAll(
+                () -> verify(userRepository).findUserByEmail(anyString()),
+                () -> assertEquals(userDetails, user)
+        );
+
     }
 
     @Test

@@ -93,7 +93,7 @@ public class QuestionService {
     }
 
     public Long getCorrectAnswer(Long questionId) throws Exception {
-        Question question = questionRepository.findById(questionId).orElseThrow(() -> new Exception("No quiz with such id"));
+        Question question = questionRepository.findById(questionId).orElseThrow(() -> new Exception("No question with such id"));
         return question.getRightAnswer().getId();
     }
 

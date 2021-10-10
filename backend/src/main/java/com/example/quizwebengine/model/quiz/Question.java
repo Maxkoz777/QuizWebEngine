@@ -27,8 +27,7 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> answers;
 
-    @OneToOne
-    private Answer rightAnswer;
+    private Long rightAnswerId;
 
     public Question() {
         this.answers = new ArrayList<>();

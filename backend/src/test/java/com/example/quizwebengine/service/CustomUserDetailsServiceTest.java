@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -49,11 +50,18 @@ class CustomUserDetailsServiceTest {
                 () -> verify(userRepository).findUserByEmail(anyString()),
                 () -> assertEquals(userDetails, user)
         );
-
     }
 
     @Test
     void loadUserById() {
+        when(userRepository.findUserById(user.getId())).thenReturn(java.util.Optional.ofNullable(user));
+
+        User retrievedUser = service.loadUserById(user.getId());
+
+        assertAll(
+                () -> verify(userRepository).findUserById(anyLong()),
+                () -> assertEquals(retrievedUser, user)
+        );
     }
 
     @Test

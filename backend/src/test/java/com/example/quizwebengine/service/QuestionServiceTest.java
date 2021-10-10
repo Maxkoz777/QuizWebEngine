@@ -5,24 +5,25 @@ import com.example.quizwebengine.model.quiz.Question;
 import com.example.quizwebengine.model.quiz.Quiz;
 import com.example.quizwebengine.payload.request.AnswerRequest;
 import com.example.quizwebengine.payload.request.QuestionRequest;
+import com.example.quizwebengine.payload.response.QuestionResponse;
 import com.example.quizwebengine.repository.AnswerRepository;
 import com.example.quizwebengine.repository.QuestionRepository;
 import com.example.quizwebengine.repository.QuizRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.powermock.api.mockito.PowerMockito;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class QuestionServiceTest {
@@ -63,6 +64,9 @@ class QuestionServiceTest {
         quiz = new Quiz();
         quiz.setId(3L);
 
+        question.setQuiz(quiz);
+        question.setAnswers(List.of(answer));
+
     }
 
     @Test
@@ -88,15 +92,33 @@ class QuestionServiceTest {
     }
 
     @Test
-    void getListOfQuestionsForTheQuiz() {
+    void getListOfQuestionsForTheQuiz() throws Exception {
+        ArrayList<Question> questions = new ArrayList<>(List.of(question));
+
+        when(questionRepository.findAllByQuizId(3L)).thenReturn(java.util.Optional.of(questions));
+
+        service.getListOfQuestionsForTheQuiz(3L);
+
+        verify(questionRepository).findAllByQuizId(3L);
     }
 
     @Test
-    void getDataAboutQuestion() {
+    void getDataAboutQuestion() throws Exception {
+        when(questionRepository.findById(question.getId())).thenReturn(Optional.ofNullable(question));
+
+        QuestionResponse response = service.getDataAboutQuestion(question.getId());
+
+        assertAll(
+                () -> verify(questionRepository).findById(question.getId()),
+                () -> assertEquals(question.getId(), response.getQuestionId())
+        );
+
     }
 
     @Test
     void updateQuestion() {
+
+        question.setAnswers(new ArrayList<>());
 
         when(questionRepository.getById(1L)).thenReturn(question);
 
@@ -115,11 +137,11 @@ class QuestionServiceTest {
     }
 
     @Test
-    void getCorrectAnswerSuccess() {
+    void getCorrectAnswerSuccess() throws Exception {
+        when(questionRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(question));
+        Long rightAnswerId = service.getCorrectAnswer(1L);
         assertAll(
                 () -> {
-                    when(questionRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(question));
-                    Long rightAnswerId = service.getCorrectAnswer(1L);
                     verify(questionRepository).findById(1L);
                     assertEquals(2L, rightAnswerId);
                 },

@@ -1,6 +1,8 @@
 <template>
   <div class="bg-white q-pa-lg quiz-entrance-container">
-    <q-input color="purple" v-model="gamePin" label-color="dark-purple" class="quiz-input" filled label="Enter PIN"/>
+    <q-input color="purple" v-model="gamePin" label-color="dark-purple" class="quiz-input" filled label="Enter PIN"
+    @keydown.enter="submitPin"
+    />
     <quiz-enter-button @clicked="submitPin"/>
 
   </div>

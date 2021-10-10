@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -52,8 +54,14 @@ class UserServiceTest {
 
     @Test
     void getUserById() {
-        when(service.getUserById(anyLong())).thenReturn(user);
-        service.getUserById(1L);
-        verify(userRepository).findUserById(1L);
+        when(userRepository.findUserById(anyLong())).thenReturn(java.util.Optional.ofNullable(user));
+
+        User retrievedUser = service.getUserById(user.getId());
+
+        assertAll(
+                () -> verify(userRepository).findUserById(user.getId()),
+                () -> assertEquals(retrievedUser, user)
+        );
+
     }
 }

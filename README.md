@@ -1,6 +1,4 @@
 # QuizWebEngine
-## Glossary
-
 
 ## :wave: About this project
 This are a user-generated quizzes that can be accessed via a web browser. It can be used as learning-based platform to review students' knowledge. Using this platform you can create you own quiz and utilities in educational affairs.

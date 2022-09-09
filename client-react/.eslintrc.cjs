@@ -5,7 +5,8 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard-with-typescript'
+    'standard-with-typescript',
+    'plugin:prettier/recommended'
   ],
   overrides: [
   ],
@@ -16,9 +17,12 @@ module.exports = {
 
   },
   plugins: [
-    'react'
+    'react',
+    '@typescript-eslint',
+    'prettier'
   ],
   rules: {
     "no-console": 1,
+    "quotes": [2, "single", "avoid-escape"]
   }
 }

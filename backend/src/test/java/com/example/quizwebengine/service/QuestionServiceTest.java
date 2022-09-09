@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isA;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -74,20 +78,20 @@ class QuestionServiceTest {
 
     @Test
     void createQuestion() throws Exception {
-        when(quizRepository.findById(3L)).thenReturn(java.util.Optional.ofNullable(quiz));
+        when(quizRepository.findById(3L)).thenReturn(Optional.ofNullable(quiz));
 
         Question questionStub = new Question();
         questionStub.setQuiz(quiz);
         questionStub.setId(null);
         questionStub.setText(questionRequest.getQuestion());
 
-        when(questionRepository.save(questionStub)).thenReturn(questionStub);
+        when(questionRepository.save(isA(Question.class))).thenReturn(questionStub);
 
         Long newQuestionId = service.createQuestion(questionRequest, 3L);
 
         assertAll(
                 () -> verify(quizRepository).findById(3L),
-                () -> verify(questionRepository).save(questionStub),
+                () -> verify(questionRepository).save(isA(Question.class)),
                 () -> assertNull(newQuestionId)
         );
 

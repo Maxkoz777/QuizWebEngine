@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'standard-with-typescript',
+    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended'
   ],
   overrides: [
@@ -14,7 +15,6 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: ["./tsconfig.json"]
-
   },
   plugins: [
     'react',

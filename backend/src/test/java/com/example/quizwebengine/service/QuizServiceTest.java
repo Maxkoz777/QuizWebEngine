@@ -1,11 +1,9 @@
 package com.example.quizwebengine.service;
 
-import com.example.quizwebengine.model.quiz.Question;
 import com.example.quizwebengine.model.quiz.Quiz;
-import com.example.quizwebengine.model.userInfo.User;
+import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.repository.QuizRepository;
 import com.example.quizwebengine.repository.UserRepository;
-import lombok.var;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

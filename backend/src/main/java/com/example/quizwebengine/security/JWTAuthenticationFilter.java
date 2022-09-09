@@ -1,6 +1,6 @@
 package com.example.quizwebengine.security;
 
-import com.example.quizwebengine.model.userInfo.User;
+import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.service.CustomUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    public static String userIdKey = "userId";
+    public static final String USER_ID_KEY = "userId";
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
@@ -40,7 +40,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 );
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                httpServletRequest.setAttribute(userIdKey, userId);
+                httpServletRequest.setAttribute(USER_ID_KEY, userId);
             }
         } catch (Exception exception) {
             logger.error("Couldn't set user authentication");

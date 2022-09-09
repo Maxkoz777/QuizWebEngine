@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+@SuppressWarnings("java:S1452")
 @RestController
 @CrossOrigin
 public class QuizController {
@@ -30,7 +31,7 @@ public class QuizController {
     @PostMapping("/quiz")
     public ResponseEntity<?> createNewQuiz(HttpServletRequest request, @Valid @RequestBody QuizCreationRequest quizCreation) {
         try {
-            Long userId = (Long) request.getAttribute(JWTAuthenticationFilter.userIdKey);
+            Long userId = (Long) request.getAttribute(JWTAuthenticationFilter.USER_ID_KEY);
             Quiz quiz = new Quiz(quizCreation.getName());
             long quizId = quizService.createQuiz(quiz, userId);
             return ResponseEntity.ok(new QuizCreationResponse(quizId));
@@ -75,7 +76,7 @@ public class QuizController {
     @GetMapping("/quiz/list")
     public ResponseEntity<?> getListOfQuizzesForUser(HttpServletRequest request) {
         try {
-            Long userId = (Long) request.getAttribute(JWTAuthenticationFilter.userIdKey);
+            Long userId = (Long) request.getAttribute(JWTAuthenticationFilter.USER_ID_KEY);
             return ResponseEntity.ok(new QuizListResponse(quizService.getListOfQuizzes(userId)));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));

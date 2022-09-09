@@ -1,7 +1,7 @@
 package com.example.quizwebengine.facade;
 
 import com.example.quizwebengine.dto.UserDTO;
-import com.example.quizwebengine.model.userInfo.User;
+import com.example.quizwebengine.model.user_info.User;
 import org.springframework.stereotype.Component;
 
 @Component

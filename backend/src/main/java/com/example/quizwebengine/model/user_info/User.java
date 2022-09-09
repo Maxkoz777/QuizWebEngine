@@ -1,4 +1,4 @@
-package com.example.quizwebengine.model.userInfo;
+package com.example.quizwebengine.model.user_info;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;

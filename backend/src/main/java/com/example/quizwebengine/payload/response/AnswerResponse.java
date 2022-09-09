@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@SuppressWarnings("java:S1104")
 public class AnswerResponse {
 
     public Long answerId;

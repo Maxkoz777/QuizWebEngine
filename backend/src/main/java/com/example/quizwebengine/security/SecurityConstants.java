@@ -1,5 +1,9 @@
 package com.example.quizwebengine.security;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SecurityConstants {
 
     // url for authorization

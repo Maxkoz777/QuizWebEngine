@@ -1,6 +1,6 @@
 package com.example.quizwebengine.repository;
 
-import com.example.quizwebengine.model.userInfo.User;
+import com.example.quizwebengine.model.user_info.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -2,7 +2,7 @@ package com.example.quizwebengine.controller;
 
 import com.example.quizwebengine.dto.UserDTO;
 import com.example.quizwebengine.facade.UserFacade;
-import com.example.quizwebengine.model.userInfo.User;
+import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.service.UserService;
 import com.example.quizwebengine.validators.ResponseErrorValidation;
 import org.springframework.beans.factory.annotation.Autowired;

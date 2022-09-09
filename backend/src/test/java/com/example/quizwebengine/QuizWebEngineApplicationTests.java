@@ -1,5 +1,6 @@
 package com.example.quizwebengine;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -11,6 +12,7 @@ class QuizWebEngineApplicationTests {
     private Integer port;
 
     @Test
+    @Disabled
     void contextLoads() {
 
     }

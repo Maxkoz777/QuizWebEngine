@@ -1,6 +1,5 @@
 package com.example.quizwebengine.controller;
 
-import com.example.quizwebengine.model.quiz.Question;
 import com.example.quizwebengine.payload.request.QuestionRequest;
 import com.example.quizwebengine.payload.response.CorrectAnswerResponse;
 import com.example.quizwebengine.payload.response.MessageResponse;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@SuppressWarnings("java:S1452")
 @RestController
 @CrossOrigin
 public class QuestionController {

@@ -1,12 +1,10 @@
 package com.example.quizwebengine.model.quiz;
 
-import com.example.quizwebengine.model.userInfo.User;
+import com.example.quizwebengine.model.user_info.User;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter

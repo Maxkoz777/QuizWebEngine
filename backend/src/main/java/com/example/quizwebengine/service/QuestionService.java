@@ -3,22 +3,22 @@ package com.example.quizwebengine.service;
 import com.example.quizwebengine.model.quiz.Answer;
 import com.example.quizwebengine.model.quiz.Question;
 import com.example.quizwebengine.model.quiz.Quiz;
-import com.example.quizwebengine.payload.request.AnswerRequest;
 import com.example.quizwebengine.payload.request.QuestionRequest;
 import com.example.quizwebengine.payload.response.AnswerResponse;
 import com.example.quizwebengine.payload.response.QuestionResponse;
 import com.example.quizwebengine.repository.AnswerRepository;
 import com.example.quizwebengine.repository.QuestionRepository;
 import com.example.quizwebengine.repository.QuizRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID;
+
+@RequiredArgsConstructor
 @Service
 public class QuestionService {
 
@@ -26,18 +26,11 @@ public class QuestionService {
     private final QuizRepository quizRepository;
     private final AnswerRepository answerRepository;
 
-    @Autowired
-    public QuestionService(QuestionRepository questionRepository, QuizRepository quizRepository, AnswerRepository answerRepository) {
-        this.questionRepository = questionRepository;
-        this.quizRepository = quizRepository;
-        this.answerRepository = answerRepository;
-    }
-
     public Long createQuestion(QuestionRequest questionRequest, Long quizId) throws Exception {
         Question question = new Question();
         question.setText(questionRequest.getQuestion());
         createAnswersForQuestion(questionRequest, question);
-        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new Exception("No quiz with such id"));
+        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new Exception(NO_QUIZ_WITH_SUCH_ID));
         question.setQuiz(quiz);
         question = questionRepository.save(question);
         return question.getId();
@@ -45,7 +38,7 @@ public class QuestionService {
 
     public List<QuestionResponse> getListOfQuestionsForTheQuiz(Long quizId) throws Exception {
         return questionRepository.findAllByQuizId(quizId)
-                .orElseThrow(() -> new Exception("No question with such id"))
+                .orElseThrow(() -> new Exception(NO_QUIZ_WITH_SUCH_ID))
                 .stream().map(question -> {
                     QuestionResponse questionResponse = new QuestionResponse();
                     questionResponse.setQuestionId(question.getId());
@@ -63,7 +56,7 @@ public class QuestionService {
             Answer answer = new Answer(answerRequest);
             answer.setQuestion(question);
             question.getAnswers().add(answer);
-            if (answerRequest.getIsRight()) {
+            if (Boolean.TRUE.equals(answerRequest.getIsRight())) {
                 question.setRightAnswer(answer);
             }
         });

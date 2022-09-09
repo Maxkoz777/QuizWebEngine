@@ -1,18 +1,15 @@
 package com.example.quizwebengine.service;
 
 import com.example.quizwebengine.dto.UserDTO;
-import com.example.quizwebengine.exceptions.UserExistException;
-import com.example.quizwebengine.model.userInfo.Role;
-import com.example.quizwebengine.model.userInfo.User;
+import com.example.quizwebengine.model.user_info.Role;
+import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.payload.request.SignupRequest;
 import com.example.quizwebengine.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

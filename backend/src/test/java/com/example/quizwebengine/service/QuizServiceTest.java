@@ -4,6 +4,7 @@ import com.example.quizwebengine.model.quiz.Quiz;
 import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.repository.QuizRepository;
 import com.example.quizwebengine.repository.UserRepository;
+import com.example.quizwebengine.service.impl.QuizServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +29,7 @@ class QuizServiceTest {
     UserRepository userRepository;
 
     @InjectMocks
-    QuizService service;
+    QuizServiceImpl service;
 
     Quiz quiz;
     User user;

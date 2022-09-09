@@ -1,6 +1,6 @@
 package com.example.quizwebengine.security;
 
-import com.example.quizwebengine.service.CustomUserDetailsService;
+import com.example.quizwebengine.service.impl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

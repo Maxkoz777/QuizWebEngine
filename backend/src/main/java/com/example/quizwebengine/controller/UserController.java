@@ -3,7 +3,7 @@ package com.example.quizwebengine.controller;
 import com.example.quizwebengine.dto.UserDTO;
 import com.example.quizwebengine.facade.UserFacade;
 import com.example.quizwebengine.model.user_info.User;
-import com.example.quizwebengine.service.UserService;
+import com.example.quizwebengine.service.impl.UserServiceImpl;
 import com.example.quizwebengine.validators.ResponseErrorValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,12 +20,12 @@ import java.security.Principal;
 @CrossOrigin
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final UserFacade userFacade;
     private final ResponseErrorValidation responseErrorValidation;
 
     @Autowired
-    public UserController(UserService userService,
+    public UserController(UserServiceImpl userService,
                           UserFacade userFacade,
                           ResponseErrorValidation responseErrorValidation) {
         this.userService = userService;

@@ -7,7 +7,7 @@ import com.example.quizwebengine.payload.response.QuizCreationResponse;
 import com.example.quizwebengine.payload.response.QuizDataResponse;
 import com.example.quizwebengine.payload.response.QuizListResponse;
 import com.example.quizwebengine.security.JWTAuthenticationFilter;
-import com.example.quizwebengine.service.QuizService;
+import com.example.quizwebengine.service.impl.QuizServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,10 +21,10 @@ import javax.validation.Valid;
 @CrossOrigin
 public class QuizController {
 
-    private final QuizService quizService;
+    private final QuizServiceImpl quizService;
 
     @Autowired
-    public QuizController(QuizService quizService) {
+    public QuizController(QuizServiceImpl quizService) {
         this.quizService = quizService;
     }
 

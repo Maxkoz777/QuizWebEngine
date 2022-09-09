@@ -1,4 +1,4 @@
-package com.example.quizwebengine.service;
+package com.example.quizwebengine.service.impl;
 
 import com.example.quizwebengine.model.quiz.Answer;
 import com.example.quizwebengine.model.quiz.Question;
@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 
 import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class QuestionService {
 
     private final QuestionRepository questionRepository;

@@ -1,7 +1,7 @@
 package com.example.quizwebengine.security;
 
 import com.example.quizwebengine.model.user_info.User;
-import com.example.quizwebengine.service.CustomUserDetailsService;
+import com.example.quizwebengine.service.impl.CustomUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

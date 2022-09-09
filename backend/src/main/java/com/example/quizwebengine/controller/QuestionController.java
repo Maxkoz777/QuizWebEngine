@@ -5,7 +5,7 @@ import com.example.quizwebengine.payload.response.CorrectAnswerResponse;
 import com.example.quizwebengine.payload.response.MessageResponse;
 import com.example.quizwebengine.payload.response.QuestionCreationResponse;
 import com.example.quizwebengine.payload.response.QuestionResponse;
-import com.example.quizwebengine.service.QuestionService;
+import com.example.quizwebengine.service.impl.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

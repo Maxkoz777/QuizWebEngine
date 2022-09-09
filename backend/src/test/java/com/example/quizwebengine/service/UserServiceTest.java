@@ -5,6 +5,7 @@ import com.example.quizwebengine.model.user_info.Role;
 import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.payload.request.SignupRequest;
 import com.example.quizwebengine.repository.UserRepository;
+import com.example.quizwebengine.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,7 +33,7 @@ class UserServiceTest {
     BCryptPasswordEncoder encoder;
 
     @InjectMocks
-    UserService service;
+    UserServiceImpl service;
 
     @Mock
     Principal mockPrincipal;

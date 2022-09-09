@@ -2,6 +2,7 @@ package com.example.quizwebengine.service;
 
 import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.repository.UserRepository;
+import com.example.quizwebengine.service.impl.CustomUserDetailsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -6,7 +6,7 @@ import com.example.quizwebengine.payload.response.JWTTokenSuccessResponse;
 import com.example.quizwebengine.payload.response.MessageResponse;
 import com.example.quizwebengine.security.JWTTokenProvider;
 import com.example.quizwebengine.security.SecurityConstants;
-import com.example.quizwebengine.service.UserService;
+import com.example.quizwebengine.service.impl.UserServiceImpl;
 import com.example.quizwebengine.validators.ResponseErrorValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,13 +30,13 @@ public class AuthController {
     private final JWTTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
     private final ResponseErrorValidation responseErrorValidation;
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
     public AuthController(JWTTokenProvider jwtTokenProvider,
                           AuthenticationManager authenticationManager,
                           ResponseErrorValidation responseErrorValidation,
-                          UserService userService) {
+                          UserServiceImpl userService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
         this.responseErrorValidation = responseErrorValidation;

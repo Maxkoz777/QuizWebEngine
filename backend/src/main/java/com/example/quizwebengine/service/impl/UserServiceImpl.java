@@ -1,6 +1,7 @@
 package com.example.quizwebengine.service.impl;
 
 import com.example.quizwebengine.dto.UserDTO;
+import com.example.quizwebengine.mapper.UserMapper;
 import com.example.quizwebengine.model.user_info.Role;
 import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.payload.request.SignupRequest;
@@ -21,11 +22,13 @@ public class UserServiceImpl implements com.example.quizwebengine.service.UserSe
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    private final UserMapper userMapper;
+
     @Override
     public User createUser(SignupRequest signupRequest) {
         User user = new User();
         user.setEmail(signupRequest.getEmail());
-        user.setName(signupRequest.getFirstname());
+        user.setFirstname(signupRequest.getFirstname());
         user.setLastname(signupRequest.getLastname());
         user.setUsername(signupRequest.getUsername());
         user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
@@ -38,9 +41,7 @@ public class UserServiceImpl implements com.example.quizwebengine.service.UserSe
     @Override
     public User updateUser(UserDTO userDTO, Principal principal) {
         User user = getUserByPrincipal(principal);
-        user.setName(userDTO.getFirstname());
-        user.setLastname(userDTO.getLastname());
-        user.setBio(userDTO.getBio());
+        userMapper.updateUserByDto(user, userDTO);
         return userRepository.save(user);
     }
 

@@ -1,6 +1,7 @@
 package com.example.quizwebengine.service;
 
 import com.example.quizwebengine.dto.UserDTO;
+import com.example.quizwebengine.mapper.UserMapper;
 import com.example.quizwebengine.model.user_info.Role;
 import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.payload.request.SignupRequest;
@@ -20,6 +21,7 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -31,6 +33,9 @@ class UserServiceTest {
 
     @Mock
     BCryptPasswordEncoder encoder;
+
+    @Mock
+    UserMapper userMapper;
 
     @InjectMocks
     UserServiceImpl service;
@@ -50,18 +55,18 @@ class UserServiceTest {
         request = new SignupRequest();
 
         user.setUsername("username");
-        user.setName("first");
+        user.setFirstname("first");
         user.setLastname("last");
         user.setId(1L);
         user.setBio("bio");
         user.setEmail("email");
 
-        userDTO.setFirstname(user.getName());
+        userDTO.setFirstname(user.getFirstname());
         userDTO.setLastname(user.getLastname());
         userDTO.setBio(user.getBio());
 
         request.setEmail(user.getEmail());
-        request.setFirstname(user.getName());
+        request.setFirstname(user.getFirstname());
         request.setLastname(user.getLastname());
         request.setUsername(user.getUsername());
         request.setPassword("password");
@@ -93,6 +98,7 @@ class UserServiceTest {
         when(userRepository.save(user)).thenReturn(user);
         when(mockPrincipal.getName()).thenReturn("username");
         when(userRepository.findUserByUsername(user.getUsername())).thenReturn(java.util.Optional.ofNullable(user));
+        doNothing().when(userMapper).updateUserByDto(user, userDTO);
 
         User retrievedUser = service.updateUser(userDTO, mockPrincipal);
 

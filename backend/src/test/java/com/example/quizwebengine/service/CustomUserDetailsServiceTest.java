@@ -33,7 +33,7 @@ class CustomUserDetailsServiceTest {
 
         user = new User();
         user.setUsername("username");
-        user.setName("first");
+        user.setFirstname("first");
         user.setLastname("last");
         user.setId(1L);
         user.setBio("bio");

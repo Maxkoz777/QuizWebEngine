@@ -1,11 +1,11 @@
 package com.example.quizwebengine.controller;
 
 import com.example.quizwebengine.dto.UserDTO;
-import com.example.quizwebengine.facade.UserFacade;
+import com.example.quizwebengine.mapper.UserMapper;
 import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.service.impl.UserServiceImpl;
 import com.example.quizwebengine.validators.ResponseErrorValidation;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
@@ -15,35 +15,27 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.security.Principal;
 
-@RestController
-@RequestMapping("api/user")
 @CrossOrigin
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("api/user")
 public class UserController {
 
     private final UserServiceImpl userService;
-    private final UserFacade userFacade;
     private final ResponseErrorValidation responseErrorValidation;
-
-    @Autowired
-    public UserController(UserServiceImpl userService,
-                          UserFacade userFacade,
-                          ResponseErrorValidation responseErrorValidation) {
-        this.userService = userService;
-        this.userFacade = userFacade;
-        this.responseErrorValidation = responseErrorValidation;
-    }
+    private final UserMapper userMapper;
 
     @GetMapping("/")
     public ResponseEntity<UserDTO> getCurrentUser(Principal principal) {
         User user = userService.getCurrentUser(principal);
-        UserDTO userDTO = userFacade.userToUserDTO(user);
+        UserDTO userDTO = userMapper.userToUserDto(user);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserDTO> getUserProfile(@PathVariable("userId") String userId) {
         User user = userService.getUserById(Long.valueOf(userId));
-        UserDTO userDTO = userFacade.userToUserDTO(user);
+        UserDTO userDTO = userMapper.userToUserDto(user);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
@@ -56,7 +48,7 @@ public class UserController {
             return errors;
         }
         User user = userService.updateUser(userDTO, principal);
-        UserDTO updatedUser = userFacade.userToUserDTO(user);
+        UserDTO updatedUser = userMapper.userToUserDto(user);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 

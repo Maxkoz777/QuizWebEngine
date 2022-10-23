@@ -26,9 +26,14 @@ public class QuestionController {
     }
 
     @PostMapping("/question/{quizId}")
-    public ResponseEntity<?> createQuestion(@Valid @RequestBody QuestionRequest questionRequest, @PathVariable Long quizId) {
+    public ResponseEntity<?> createQuestion(
+        @Valid @RequestBody QuestionRequest questionRequest,
+        @PathVariable Long quizId)
+    {
         try {
-            QuestionCreationResponse questionCreationResponse = new QuestionCreationResponse(questionService.createQuestion(questionRequest, quizId));
+            QuestionCreationResponse questionCreationResponse = new QuestionCreationResponse(
+                questionService.createQuestion(questionRequest, quizId)
+            );
             return ResponseEntity.ok(questionCreationResponse);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
@@ -56,7 +61,10 @@ public class QuestionController {
     }
 
     @PutMapping("/question/{questionId}")
-    public ResponseEntity<?> updateDataAboutQuestion(@Valid @RequestBody QuestionRequest questionRequest, @PathVariable(required = true) Long questionId) {
+    public ResponseEntity<?> updateDataAboutQuestion(
+        @Valid @RequestBody QuestionRequest questionRequest,
+        @PathVariable Long questionId)
+    {
         try {
             questionService.updateQuestion(questionRequest, questionId);
             return ResponseEntity.ok(new MessageResponse("Question has been updated successfully"));
@@ -66,7 +74,7 @@ public class QuestionController {
     }
 
     @DeleteMapping("/question/{questionId}")
-    public ResponseEntity<?> deleteDataAboutQuestion(@PathVariable(required = true) Long questionId) {
+    public ResponseEntity<?> deleteDataAboutQuestion(@PathVariable Long questionId) {
         try {
             questionService.deleteQuestion(questionId);
             return ResponseEntity.ok(new MessageResponse("Question has deleted successfully"));
@@ -76,7 +84,7 @@ public class QuestionController {
     }
 
     @GetMapping("/question/{questionId}/correctAnswer")
-    public ResponseEntity<?> checkCorrectnessOfAnswer(@PathVariable(required = true) Long questionId) {
+    public ResponseEntity<?> checkCorrectnessOfAnswer(@PathVariable Long questionId) {
         try {
             return ResponseEntity.ok(new CorrectAnswerResponse(questionService.getCorrectAnswer(questionId)));
         } catch (Exception e) {

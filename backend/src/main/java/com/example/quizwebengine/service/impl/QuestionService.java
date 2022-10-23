@@ -44,9 +44,9 @@ public class QuestionService {
                     questionResponse.setQuestionId(question.getId());
                     questionResponse.setQuestion(question.getText());
                     questionResponse.setRightAnswerId(question.getRightAnswer().getId());
-                    questionResponse.setAnswer(question.getAnswers()
-                            .stream().map(answer -> new AnswerResponse(answer.getId(), answer.getText()))
-                            .collect(Collectors.toList()));
+                    questionResponse.setAnswer(question.getAnswers().stream()
+                                                   .map(answer -> new AnswerResponse(answer.getId(), answer.getText()))
+                                                   .collect(Collectors.toList()));
                     return questionResponse;
                 }).collect(Collectors.toList());
     }
@@ -64,7 +64,8 @@ public class QuestionService {
 
     public QuestionResponse getDataAboutQuestion(Long questionId) throws Exception {
         QuestionResponse questionResponse = new QuestionResponse();
-        Question question = questionRepository.findById(questionId).orElseThrow(() -> new Exception("No question with such id"));
+        Question question = questionRepository.findById(questionId)
+            .orElseThrow(() -> new Exception("No question with such id"));
         questionResponse.setQuestionId(questionId);
         questionResponse.setQuestion(question.getText());
         questionResponse.setRightAnswerId(question.getRightAnswer().getId());

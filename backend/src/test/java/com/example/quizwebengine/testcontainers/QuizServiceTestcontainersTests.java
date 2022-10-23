@@ -3,8 +3,12 @@ package com.example.quizwebengine.testcontainers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.example.quizwebengine.model.quiz.Quiz;
-import com.example.quizwebengine.repository.QuizRepository;
+import com.example.quizwebengine.model.user_info.User;
+import com.example.quizwebengine.repository.UserRepository;
+import com.example.quizwebengine.service.QuizService;
+import java.util.Collections;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +26,10 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 class QuizServiceTestcontainersTests {
 
     @Autowired
-    QuizRepository quizRepository;
+    QuizService quizService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Container
     public static PostgreSQLContainer postrgresContainer = new PostgreSQLContainer();
@@ -34,14 +41,23 @@ class QuizServiceTestcontainersTests {
         registry.add("spring.datasource.username", postrgresContainer::getUsername);
     }
 
+    private User stubUser() {
+        User user = new User(1L, "userName", "user@mail.com", "pw", Collections.emptyList());
+        user.setFirstname("firstname");
+        user.setLastname("lastname");
+        return user;
+    }
+
     @Test
+    @SneakyThrows
     void quizSavingTest() {
         int QUIZZES = 5;
-        assertEquals(0, quizRepository.findAll().size());
+        long userId = userRepository.save(stubUser()).getId();
+        assertEquals(0, quizService.getListOfQuizzes(userId).size());
         for (int i = 0; i < QUIZZES; i++) {
-            quizRepository.save(new Quiz());
+            quizService.createQuiz(new Quiz(), userId);
         }
-        assertEquals(QUIZZES, quizRepository.findAll().size());
+        assertEquals(QUIZZES, quizService.getListOfQuizzes(userId).size());
     }
 
 

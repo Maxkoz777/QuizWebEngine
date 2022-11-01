@@ -23,7 +23,7 @@ Example code in this document is **non-normative**. That is, while the examples 
 
 ### 2.1 File name
 
-The source file name consists of the case-sensitive name of the top-level class it contains (of which there is [exactly one](#3.4.1-one-top-level-class)), plus the `.java` extension.
+The source file name consists of the case-sensitive name of the top-level class it contains (of which there is [exactly one](#341-exactly-one-top-level-class)), plus the `.java` extension.
 
 ### 2.2 File encoding: UTF-8
 

@@ -698,3 +698,6 @@ Other classes and members have Javadoc _as needed or desired_.
 Whenever an implementation comment would be used to define the overall purpose or behavior of a class or member, that comment is written as Javadoc instead (using `/**`).
 
 Non-required Javadoc is not strictly required to follow the formatting rules of Sections 7.1.1, 7.1.2, 7.1.3, and 7.2, though it is of course recommended.
+
+## References:
+- https://google.github.io/styleguide/javaguide.html#s3-source-file-structure

@@ -23,7 +23,7 @@ Example code in this document is **non-normative**. That is, while the examples 
 
 ### 2.1 File name
 
-The source file name consists of the case-sensitive name of the top-level class it contains (of which there is [exactly one](#341-exactly-one-top-level-class)), plus the `.java` extension.
+The source file name consists of the case-sensitive name of the top-level class it contains (of which there is [exactly one](#341-exactly-one-top-level-class-declaration)), plus the `.java` extension.
 
 ### 2.2 File encoding: UTF-8
 
@@ -77,7 +77,7 @@ If license or copyright information belongs in a file, it belongs here.
 
 ### 3.2 Package statement
 
-The package statement is **not line-wrapped**. The column limit (Section 4.4, [Column limit: 100](#s4.4-column-limit)) does not apply to package statements.
+The package statement is **not line-wrapped**. The column limit (Section 4.4, [Column limit: 100](#44-column-limit-100)) does not apply to package statements.
 
 ### 3.3 Import statements
 
@@ -87,7 +87,7 @@ The package statement is **not line-wrapped**. The column limit (Section 4.4, [C
 
 #### 3.3.2 No line-wrapping
 
-Import statements are **not line-wrapped**. The column limit (Section 4.4, [Column limit: 100](#s4.4-column-limit)) does not apply to import statements.
+Import statements are **not line-wrapped**. The column limit (Section 4.4, [Column limit: 100](#44-column-limit-100)) does not apply to import statements.
 
 #### 3.3.3 Ordering and spacing
 
@@ -122,7 +122,7 @@ Methods of a class that share the same name appear in a single contiguous group 
 
 ## 4. Formatting
 
-**Terminology Note:** _block-like construct_ refers to the body of a class, method or constructor. Note that, by Section 4.8.3.1 on [array initializers](#s4.8.3.1-array-initializers), any array initializer _may_ optionally be treated as if it were a block-like construct.
+**Terminology Note:** _block-like construct_ refers to the body of a class, method or constructor. Note that, by Section 4.8.3.1 on [array initializers](#4831-array-initializers-can-be-block-like), any array initializer _may_ optionally be treated as if it were a block-like construct.
 
 ### 4.1 Braces
 
@@ -173,11 +173,11 @@ return new MyClass() {
 };
 ```
 
-A few exceptions for enum classes are given in Section 4.8.1, [Enum classes](#s4.8.1-enum-classes).
+A few exceptions for enum classes are given in Section 4.8.1, [Enum classes](#481-enum-classes).
 
 #### 4.1.3 Empty blocks: may be concise
 
-An empty block or block-like construct may be in K & R style (as described in [Section 4.1.2](#s4.1.2-blocks-k-r-style)). Alternatively, it may be closed immediately after it is opened, with no characters or line break in between (`{}`), **unless** it is part of a _multi-block statement_ (one that directly contains multiple blocks: `if/else` or `try/catch/finally`).
+An empty block or block-like construct may be in K & R style (as described in [Section 4.1.2](#412-nonempty-blocks-k--r-style)). Alternatively, it may be closed immediately after it is opened, with no characters or line break in between (`{}`), **unless** it is part of a _multi-block statement_ (one that directly contains multiple blocks: `if/else` or `try/catch/finally`).
 
 Examples:
 ```
@@ -197,7 +197,7 @@ Examples:
 
 ### 4.2 Block indentation: +2 spaces
 
-Each time a new block or block-like construct is opened, the indent increases by two spaces. When the block ends, the indent returns to the previous indent level. The indent level applies to both code and comments throughout the block. (See the example in Section 4.1.2, [Nonempty blocks: K & R Style](#s4.1.2-blocks-k-r-style).)
+Each time a new block or block-like construct is opened, the indent increases by two spaces. When the block ends, the indent returns to the previous indent level. The indent level applies to both code and comments throughout the block. (See the example in Section 4.1.2, [Nonempty blocks: K & R Style](#412-nonempty-blocks-k--r-style).)
 
 ### 4.3 One statement per line
 
@@ -205,14 +205,14 @@ Each statement is followed by a line break.
 
 ### 4.4 Column limit: 100
 
-Java code has a column limit of 100 characters. A "character" means any Unicode code point. Except as noted below, any line that would exceed this limit must be line-wrapped, as explained in Section 4.5, [Line-wrapping](#s4.5-line-wrapping).
+Java code has a column limit of 100 characters. A "character" means any Unicode code point. Except as noted below, any line that would exceed this limit must be line-wrapped, as explained in Section 4.5, [Line-wrapping](#45-line-wrapping).
 
 Each Unicode code point counts as one character, even if its display width is greater or less. For example, if using [fullwidth characters](https://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms), you may choose to wrap the line earlier than where this rule strictly requires.
 
 **Exceptions:**
 
 1.  Lines where obeying the column limit is not possible (for example, a long URL in Javadoc, or a long JSNI method reference).
-2.  `package` and `import` statements (see Sections 3.2 [Package statement](#s3.2-package-statement) and 3.3 [Import statements](https://google.github.io/styleguide/javaguide.html#s3.3-import-statements)).
+2.  `package` and `import` statements (see Sections 3.2 [Package statement](#32-package-statement) and 3.3 [Import statements](#33-import-statements)).
 3.  Command lines in a comment that may be copied-and-pasted into a shell.
 4.  Very long identifiers, on the rare occasions they are called for, are allowed to exceed the column limit. In that case, the valid wrapping for the surrounding code is as produced by [google-java-format](https://github.com/google/google-java-format).
 
@@ -259,7 +259,7 @@ When line-wrapping, each line after the first (each _continuation line_) is inde
 
 When there are multiple continuation lines, indentation may be varied beyond +4 as desired. In general, two continuation lines use the same indentation level if and only if they begin with syntactically parallel elements.
 
-Section 4.6.3 on [Horizontal alignment](https://google.github.io/styleguide/javaguide.html#s4.6.3-horizontal-alignment) addresses the discouraged practice of using a variable number of spaces to align certain tokens with previous lines.
+Section 4.6.3 on [Horizontal alignment](#463-horizontal-alignment-never-required) addresses the discouraged practice of using a variable number of spaces to align certain tokens with previous lines.
 
 ### 4.6 Whitespace
 
@@ -269,8 +269,8 @@ A single blank line always appears:
 
 1.  _Between_ consecutive members or initializers of a class: fields, constructors, methods, nested classes, static initializers, and instance initializers.
     *   **Exception:** A blank line between two consecutive fields (having no other code between them) is optional. Such blank lines are used as needed to create _logical groupings_ of fields.
-    *   **Exception:** Blank lines between enum constants are covered in [Section 4.8.1](https://google.github.io/styleguide/javaguide.html#s4.8.1-enum-classes).
-2.  As required by other sections of this document (such as Section 3, [Source file structure](https://google.github.io/styleguide/javaguide.html#s3-source-file-structure), and Section 3.3, [Import statements](https://google.github.io/styleguide/javaguide.html#s3.3-import-statements)).
+    *   **Exception:** Blank lines between enum constants are covered in [Section 4.8.1](#481-enum-classes).
+2.  As required by other sections of this document (such as Section 3, [Source file structure](#3-source-file-structure), and Section 3.3, [Import statements](#33-import-statements)).
 
 A single blank line may also appear anywhere it improves readability, for example between statements to organize the code into logical subsections. A blank line before the first member or initializer, or after the last member or initializer of the class, is neither encouraged nor discouraged.
 
@@ -343,7 +343,7 @@ private enum Answer {
   MAYBE
 }
 ```
-An enum class with no methods and no documentation on its constants may optionally be formatted as if it were an array initializer (see Section 4.8.3.1 on [array initializers](#s4.8.3.1-array-initializers)).
+An enum class with no methods and no documentation on its constants may optionally be formatted as if it were an array initializer (see Section 4.8.3.1 on [array initializers](#4831-array-initializers-can-be-block-like)).
 ```
 private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS }
 ```
@@ -427,7 +427,7 @@ public @Nullable Person getPersonByName(String name);
 ```
 ##### 4.8.5.2 Class annotations
 
-Annotations applying to a class appear immediately after the documentation block, and each annotation is listed on a line of its own (that is, one annotation per line). These line breaks do not constitute line-wrapping (Section 4.5, [Line-wrapping](https://google.github.io/styleguide/javaguide.html#s4.5-line-wrapping)), so the indentation level is not increased. Example:
+Annotations applying to a class appear immediately after the documentation block, and each annotation is listed on a line of its own (that is, one annotation per line). These line breaks do not constitute line-wrapping (Section 4.5, [Line-wrapping](#45-line-wrapping)), so the indentation level is not increased. Example:
 ```
 @Deprecated
 @CheckReturnValue
@@ -435,7 +435,7 @@ public final class Frozzler { ... }
 ```
 ##### 4.8.5.3 Method and constructor annotations
 
-The rules for annotations on method and constructor declarations are the same as the [previous section](https://google.github.io/styleguide/javaguide.html#s4.8.5.2-class-annotation-style). Example:
+The rules for annotations on method and constructor declarations are the same as the [previous section](#4852-class-annotations). Example:
 ```
 @Deprecated
 @Override
@@ -457,7 +457,7 @@ There are no specific rules for formatting annotations on parameters or local va
 
 #### 4.8.6 Comments
 
-This section addresses _implementation comments_. Javadoc is addressed separately in Section 7, [Javadoc](https://google.github.io/styleguide/javaguide.html#s7-javadoc).
+This section addresses _implementation comments_. Javadoc is addressed separately in Section 7, [Javadoc](#7-javadoc).
 
 Any line break may be preceded by arbitrary whitespace followed by an implementation comment. Such a comment renders the line non-blank.
 
@@ -500,7 +500,7 @@ Package names use only lowercase letters and digits (no underscores). Consecutiv
 
 #### 5.2.2 Class names
 
-Class names are written in [UpperCamelCase](https://google.github.io/styleguide/javaguide.html#s5.3-camel-case).
+Class names are written in [UpperCamelCase](#53-camel-case-defined).
 
 Class names are typically nouns or noun phrases. For example, `Character` or `ImmutableList`. Interface names may also be nouns or noun phrases (for example, `List`), but may sometimes be adjectives or adjective phrases instead (for example, `Readable`).
 
@@ -510,11 +510,11 @@ A _test_ class has a name that ends with `Test`, for example, `HashIntegrationTe
 
 #### 5.2.3 Method names
 
-Method names are written in [lowerCamelCase](https://google.github.io/styleguide/javaguide.html#s5.3-camel-case).
+Method names are written in [lowerCamelCase](#53-camel-case-defined).
 
 Method names are typically verbs or verb phrases. For example, `sendMessage` or `stop`.
 
-Underscores may appear in JUnit _test_ method names to separate logical components of the name, with _each_ component written in [lowerCamelCase](https://google.github.io/styleguide/javaguide.html#s5.3-camel-case), for example `transferMoney_deductsFromSource`. There is no One Correct Way to name test methods.
+Underscores may appear in JUnit _test_ method names to separate logical components of the name, with _each_ component written in [lowerCamelCase](#53-camel-case-defined), for example `transferMoney_deductsFromSource`. There is no One Correct Way to name test methods.
 
 #### 5.2.4 Constant names
 
@@ -543,19 +543,19 @@ These names are typically nouns or noun phrases.
 
 #### 5.2.5 Non-constant field names
 
-Non-constant field names (static or otherwise) are written in [lowerCamelCase](https://google.github.io/styleguide/javaguide.html#s5.3-camel-case).
+Non-constant field names (static or otherwise) are written in [lowerCamelCase](#53-camel-case-defined).
 
 These names are typically nouns or noun phrases. For example, `computedValues` or `index`.
 
 #### 5.2.6 Parameter names
 
-Parameter names are written in [lowerCamelCase](https://google.github.io/styleguide/javaguide.html#s5.3-camel-case).
+Parameter names are written in [lowerCamelCase](#53-camel-case-defined).
 
 One-character parameter names in public methods should be avoided.
 
 #### 5.2.7 Local variable names
 
-Local variable names are written in [lowerCamelCase](https://google.github.io/styleguide/javaguide.html#s5.3-camel-case).
+Local variable names are written in [lowerCamelCase](#53-camel-case-defined).
 
 Even when final and immutable, local variables are not considered to be constants, and should not be styled as constants.
 
@@ -564,7 +564,7 @@ Even when final and immutable, local variables are not considered to be constant
 Each type variable is named in one of two styles:
 
 *   A single capital letter, optionally followed by a single numeral (such as `E`, `T`, `X`, `T2`)
-*   A name in the form used for classes (see Section 5.2.2, [Class names](https://google.github.io/styleguide/javaguide.html#s5.2.2-class-names)), followed by the capital letter `T` (examples: `RequestT`, `FooBarT`).
+*   A name in the form used for classes (see Section 5.2.2, [Class names](#522-class-names)), followed by the capital letter `T` (examples: `RequestT`, `FooBarT`).
 
 ### 5.3 Camel case: defined
 
@@ -679,7 +679,7 @@ This is a fragment—a noun phrase or verb phrase, not a complete sentence. It d
 
 At the _minimum_, Javadoc is present for every `public` class, and every `public` or `protected` member of such a class, with a few exceptions noted below.
 
-Additional Javadoc content may also be present, as explained in Section 7.3.4, [Non-required Javadoc](https://google.github.io/styleguide/javaguide.html#s7.3.4-javadoc-non-required).
+Additional Javadoc content may also be present, as explained in Section 7.3.4, [Non-required Javadoc](#734-non-required-javadoc).
 
 #### 7.3.1 Exception: self-explanatory members
 

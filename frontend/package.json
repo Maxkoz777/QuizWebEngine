@@ -4,7 +4,7 @@
   "description": "A Quasar Framework app",
   "productName": "Quiz web engine",
   "author": "AfanasevEvgeny <afazhenya2001@gmail.com>",
-  "private": true,
+  "private": false,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",

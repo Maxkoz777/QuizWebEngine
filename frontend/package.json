@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "@quiz-web-engine/frontend",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
   "productName": "Quiz web engine",

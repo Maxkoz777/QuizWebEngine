@@ -1,19 +1,43 @@
-on: 
+on:
   push:
     paths:
       - 'frontend/**'
       - '.github/workflows/frontend.yml'
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: "./frontend"
+        working-directory: "./backend"
     steps:
       - uses: actions/checkout@v3
+
+      # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
+
         with:
-          node-version: 12
-      - uses: JS-DevTools/npm-publish@v1
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm publish --token ${{ secrets.NPM_TOKEN }}
+
+name: Publish to NPM
+on:
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
         with:
-          token: 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
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build
+      - name: Publish package on NPM 📦
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

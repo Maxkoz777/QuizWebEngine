@@ -14,8 +14,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 12
-      - run: npm install
-      - run: npm test
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: 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

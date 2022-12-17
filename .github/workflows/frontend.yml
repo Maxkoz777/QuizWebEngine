@@ -5,9 +5,9 @@ on:
       - '.github/workflows/frontend.yml'
 jobs:
  - name: Use joshstrange/setup-quasar
-  uses: joshstrange/setup-quasar@v1
-  with:
-    cordova-version: 9
+   uses: joshstrange/setup-quasar@v1
+   with:
+     cordova-version: 9
 
 - name: Build
   run: |

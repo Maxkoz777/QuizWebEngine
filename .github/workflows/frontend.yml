@@ -4,19 +4,12 @@ on:
       - 'frontend/**'
       - '.github/workflows/frontend.yml'
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: "./frontend"
-    steps:
-      - uses: actions/checkout@v3
+ - name: Use joshstrange/setup-quasar
+  uses: joshstrange/setup-quasar@v1
+  with:
+    cordova-version: 9
 
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v3
-
-        with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm publish --token ${{ secrets.NPM_TOKEN }}
+- name: Build
+  run: |
+    quasar build -m cordova -T ios     
 

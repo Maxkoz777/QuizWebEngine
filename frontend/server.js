@@ -2,7 +2,7 @@ const
   express = require('express'),
   serveStatic = require('serve-static'),
   history = require('connect-history-api-fallback'),
-  port = process.env.PORT || 5000
+  port = process.env.PORT || 8081
 
 const app = express()
 

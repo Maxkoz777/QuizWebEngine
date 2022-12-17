@@ -4,6 +4,8 @@ const
   history = require('connect-history-api-fallback'),
   port = process.env.PORT || 8081
 
+  console.log('PORT:', port)
+
 const app = express()
 
 app.use(history())

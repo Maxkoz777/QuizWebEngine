@@ -16,10 +16,12 @@ services:
       DB_NAME: quizengine
       DB_PORT: 5432
   frontend:
-    container_name: frontend
     build: ./frontend
+    container_name: frontend
     ports:
       - "8081:8081"
+    environment:
+      BACK_URL: "192.168.31.230:8080"
     restart: on-failure
   postgres:
     container_name: postgres

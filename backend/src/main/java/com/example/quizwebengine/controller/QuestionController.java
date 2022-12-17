@@ -27,12 +27,11 @@ public class QuestionController {
 
     @PostMapping("/question/{quizId}")
     public ResponseEntity<?> createQuestion(
-        @Valid @RequestBody QuestionRequest questionRequest,
-        @PathVariable Long quizId)
-    {
+            @Valid @RequestBody QuestionRequest questionRequest,
+            @PathVariable Long quizId) {
         try {
             QuestionCreationResponse questionCreationResponse = new QuestionCreationResponse(
-                questionService.createQuestion(questionRequest, quizId)
+                    questionService.createQuestion(questionRequest, quizId)
             );
             return ResponseEntity.ok(questionCreationResponse);
         } catch (Exception e) {
@@ -62,9 +61,8 @@ public class QuestionController {
 
     @PutMapping("/question/{questionId}")
     public ResponseEntity<?> updateDataAboutQuestion(
-        @Valid @RequestBody QuestionRequest questionRequest,
-        @PathVariable Long questionId)
-    {
+            @Valid @RequestBody QuestionRequest questionRequest,
+            @PathVariable Long questionId) {
         try {
             questionService.updateQuestion(questionRequest, questionId);
             return ResponseEntity.ok(new MessageResponse("Question has been updated successfully"));

@@ -48,6 +48,9 @@ Installed Java 11 and Node.js
 5. Open directory Frontend, Open terminal and write `npm install`, after that `quasar dev`
 6. Open `localhost:8081`
 
+## :ferry: Docker compose
+If you want to run services, use `docker-compose up -build -d` command
+
 ## :bookmark_tabs: Requirements
 Check [Requirements](/documentation/Requirements.md) file to find:
 - Glossary.

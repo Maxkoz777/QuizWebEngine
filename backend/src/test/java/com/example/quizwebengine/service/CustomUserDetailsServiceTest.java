@@ -43,12 +43,12 @@ class CustomUserDetailsServiceTest {
 
     @Test
     void loadUserByUsername() {
-        when(userRepository.findUserByEmail(user.getUsername())).thenReturn(java.util.Optional.ofNullable(user));
+        when(userRepository.findUserByUsername(user.getUsername())).thenReturn(java.util.Optional.ofNullable(user));
 
         UserDetails userDetails = service.loadUserByUsername(user.getUsername());
 
         assertAll(
-                () -> verify(userRepository).findUserByEmail(anyString()),
+                () -> verify(userRepository).findUserByUsername(anyString()),
                 () -> assertEquals(userDetails, user)
         );
     }

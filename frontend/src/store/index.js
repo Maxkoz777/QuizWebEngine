@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
 import signingUpModule from "src/store/modules/signingUpModule";
 import loginModule from "src/store/modules/loginModule";
@@ -7,8 +7,7 @@ import homeModule from "src/store/modules/homeModule";
 import quizEditorModule from "src/store/modules/quizEditorModule";
 import gameModule from "src/store/modules/gameModule";
 
-
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 /*
  * If not building with SSR mode, you can
@@ -19,7 +18,7 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-export default function (/* { ssrContext } */) {
+export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       signingUpModule,
@@ -32,7 +31,7 @@ export default function (/* { ssrContext } */) {
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEBUGGING
-  })
+  });
 
-  return Store
+  return Store;
 }

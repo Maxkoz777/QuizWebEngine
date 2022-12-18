@@ -1,5 +1,7 @@
 <template>
-  <div class="fullscreen index-page-color column items-center justify-center text-h3 text-white">
+  <div
+    class="fullscreen index-page-color column items-center justify-center text-h3 text-white"
+  >
     <div>
       Loading
     </div>
@@ -12,9 +14,7 @@
 <script>
 export default {
   name: "LoadingFrameFullSize"
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

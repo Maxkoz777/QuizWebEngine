@@ -1,5 +1,9 @@
 <template>
-  <q-btn class="full-width quiz-entrance-button q-mt-sm" unelevated @click="clicked">
+  <q-btn
+    class="full-width quiz-entrance-button q-mt-sm"
+    unelevated
+    @click="clicked"
+  >
     ENTER
   </q-btn>
 </template>
@@ -9,15 +13,15 @@ export default {
   name: "QuizEnterButton",
   methods: {
     clicked() {
-      this.$emit('clicked')
+      this.$emit("clicked");
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .quiz-entrance-button {
-  background-color: #15054F;
+  background-color: #15054f;
   color: white;
   border-radius: 5px;
 }

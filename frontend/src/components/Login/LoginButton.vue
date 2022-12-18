@@ -9,14 +9,14 @@ export default {
   name: "LoginButton",
   methods: {
     openLoginDialog() {
-      this.$router.push('main/login')
+      this.$router.push("main/login");
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .login-button {
-  color: white
+  color: white;
 }
 </style>

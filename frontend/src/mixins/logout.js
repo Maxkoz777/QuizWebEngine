@@ -1,9 +1,9 @@
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
 export const logout = {
   methods: {
     ...mapActions({
-      logout: 'homeModule/logout'
+      logout: "homeModule/logout"
     })
   }
-}
+};

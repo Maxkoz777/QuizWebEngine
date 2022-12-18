@@ -5,14 +5,12 @@
 </template>
 
 <script>
-import {logout} from "src/mixins/logout";
+import { logout } from "src/mixins/logout";
 
 export default {
   name: "LogoutButton",
   mixins: [logout]
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

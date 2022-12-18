@@ -9,9 +9,16 @@
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "build": "npx quasar build -m ssr",
+    "prepare": "husky install",
     "start": "node server.js",
     "prettier": "prettier --write ./src",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

@@ -1,5 +1,5 @@
 <template>
-  <game-page-layout/>
+  <game-page-layout />
 </template>
 
 <script>
@@ -7,10 +7,8 @@ import GamePageLayout from "app/layouts/GamePage/GamePageLayout";
 
 export default {
   name: "GamePage",
-  components: {GamePageLayout}
-}
+  components: { GamePageLayout }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

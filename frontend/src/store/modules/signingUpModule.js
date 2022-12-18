@@ -6,13 +6,13 @@ export default {
   actions: {
     async resisterUser(context, userData) {
       try {
-        const response = await axios.post(`api/auth/signup`, userData)
-        return true
+        const response = await axios.post(`api/auth/signup`, userData);
+        return true;
       } catch (e) {
-        return false
+        return false;
       }
     }
   },
   mutations: {},
   getters: {}
-}
+};

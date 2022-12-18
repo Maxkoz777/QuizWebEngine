@@ -1,17 +1,14 @@
 <template>
-  <user-info-section-layout/>
+  <user-info-section-layout />
 </template>
 
 <script>
-
 import UserInfoSectionLayout from "app/layouts/UserPage/UserInfoSectionLayout";
 
 export default {
   name: "UserInfoSection",
-  components: {UserInfoSectionLayout},
-}
+  components: { UserInfoSectionLayout }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

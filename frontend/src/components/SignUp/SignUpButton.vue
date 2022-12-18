@@ -9,11 +9,10 @@ export default {
   name: "SignUpButton",
   methods: {
     openSignUpDialog() {
-      this.$router.push('main/register')
+      this.$router.push("main/register");
     }
   }
-}
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

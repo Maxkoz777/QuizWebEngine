@@ -1,50 +1,55 @@
 <template>
   <div class="bg-white q-pa-lg quiz-entrance-container">
-    <q-input color="purple" v-model="gamePin" label-color="dark-purple" class="quiz-input" filled label="Enter PIN"
-    @keydown.enter="submitPin"
+    <q-input
+      color="purple"
+      v-model="gamePin"
+      label-color="dark-purple"
+      class="quiz-input"
+      filled
+      label="Enter PIN"
+      @keydown.enter="submitPin"
     />
-    <quiz-enter-button @clicked="submitPin"/>
-
+    <quiz-enter-button @clicked="submitPin" />
   </div>
 </template>
 
 <script>
 import QuizEnterButton from "components/QuizEntrance/QuizEnterButton";
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   name: "QuizEntrance",
-  components: {QuizEnterButton},
+  components: { QuizEnterButton },
   data() {
     return {
-      gamePin: ''
-    }
+      gamePin: ""
+    };
   },
   methods: {
     ...mapActions({
-      validateQuizPin: 'gameModule/validateQuizPin',
-      removeQuizData:'gameModule/removeQuizData'
+      validateQuizPin: "gameModule/validateQuizPin",
+      removeQuizData: "gameModule/removeQuizData"
     }),
     async submitPin() {
-      let result =await this.validateQuizPin(this.gamePin)
-      if (result){
-        await this.$router.push(`/game/${this.gamePin}`)
-      }else {
-        this.showQuizEnterError()
+      let result = await this.validateQuizPin(this.gamePin);
+      if (result) {
+        await this.$router.push(`/game/${this.gamePin}`);
+      } else {
+        this.showQuizEnterError();
       }
     },
-    showQuizEnterError () {
+    showQuizEnterError() {
       this.$q.notify({
-        message: 'There is no yet quiz with such PIN :(',
-        icon: 'announcement',
-        color:'red'
-      })
+        message: "There is no yet quiz with such PIN :(",
+        icon: "announcement",
+        color: "red"
+      });
     }
   },
   mounted() {
-    this.removeQuizData()
+    this.removeQuizData();
   }
-}
+};
 </script>
 
 <style scoped>

@@ -7,9 +7,6 @@
       {{ firstname + '  ' + lastname }}
     </div>
     <div>
-      email
-    </div>
-    <div>
       <logout-button-main/>
     </div>
   </div>

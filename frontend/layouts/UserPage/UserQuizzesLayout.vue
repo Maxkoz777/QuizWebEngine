@@ -8,7 +8,7 @@
       <q-separator/>
       <div class="q-pt-md">
         <div class="q-pr-md q-pl-md q-gutter-md" v-if="quizList.length!==0">
-          <quiz-list-item v-for="item in quizList" :name="item.name" :id="item.quizId" :key="item.quizId"
+          <quiz-list-item v-for="item in quizList" :name="item.name" :id="item.quizId" :quizCount="item.questions.length" :key="item.quizId"
                           @deleteQuiz="deleteQuiz"/>
         </div>
         <div v-else class="q-pa-md">

@@ -43,7 +43,7 @@ public class QuizController {
 
     @GetMapping("/quiz/{quizId}")
     @PreAuthorize("permitAll()")
-    public ResponseEntity<?> getDataAboutQuiz(@PathVariable(required = true) Long quizId) {
+    public ResponseEntity<?> getDataAboutQuiz(@PathVariable Long quizId) {
         try {
             Quiz quiz = quizService.getDataAboutQuiz(quizId);
             QuizDataResponse quizData = new QuizDataResponse(quizId, quiz.getName(), quiz.getQuestions());
@@ -54,7 +54,7 @@ public class QuizController {
     }
 
     @PutMapping("/quiz/{quizId}")
-    public ResponseEntity<?> updateQuizData(@PathVariable(required = true) Long quizId,
+    public ResponseEntity<?> updateQuizData(@PathVariable Long quizId,
                                             @Valid @RequestBody QuizCreationRequest quizUpdateData) {
         try {
             quizService.updateQuizData(quizId, quizUpdateData.getName());
@@ -65,7 +65,7 @@ public class QuizController {
     }
 
     @DeleteMapping("/quiz/{quizId}")
-    public ResponseEntity<?> deleteQuizData(@PathVariable(required = true) Long quizId) {
+    public ResponseEntity<?> deleteQuizData(@PathVariable Long quizId) {
         try {
             quizService.deleteQuizData(quizId);
             return ResponseEntity.ok(new MessageResponse("Quiz has been deleted successfully"));

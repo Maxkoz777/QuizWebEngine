@@ -1,5 +1,6 @@
 package com.example.quizwebengine.service.impl;
 
+import com.example.quizwebengine.exceptions.QuizException;
 import com.example.quizwebengine.model.quiz.Answer;
 import com.example.quizwebengine.model.quiz.Question;
 import com.example.quizwebengine.model.quiz.Quiz;
@@ -9,7 +10,9 @@ import com.example.quizwebengine.payload.response.QuestionResponse;
 import com.example.quizwebengine.repository.AnswerRepository;
 import com.example.quizwebengine.repository.QuestionRepository;
 import com.example.quizwebengine.repository.QuizRepository;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -73,9 +76,16 @@ public class QuestionService {
         return questionResponse;
     }
 
+    @SneakyThrows
     @Transactional
     public void updateQuestion(QuestionRequest questionRequest, Long questionId) {
-        Question question = questionRepository.getById(questionId);
+        Optional<Question> questionOptional = questionRepository.findById(questionId);
+        Question question;
+        if (questionOptional.isPresent()) {
+            question = questionOptional.get();
+        } else {
+            throw new QuizException("No questions exists with such id");
+        }
         question.setText(questionRequest.getQuestion());
         answerRepository.deleteAllByQuestion(question);
         createAnswersForQuestion(questionRequest, question);

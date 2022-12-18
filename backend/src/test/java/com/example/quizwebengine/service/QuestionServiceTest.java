@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -125,7 +124,7 @@ class QuestionServiceTest {
 
         question.setAnswers(new ArrayList<>());
 
-        when(questionRepository.getById(1L)).thenReturn(question);
+        when(questionRepository.findById(1L)).thenReturn(Optional.of(question));
 
         service.updateQuestion(questionRequest, 1L);
 

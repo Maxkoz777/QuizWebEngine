@@ -35,7 +35,7 @@ reliability and availability of system, increasing performance and functionality
 - **Deploy:** Heroku, git
 
 ## :heavy_exclamation_mark: Prerequisites
-Installed Java 11 and Node.js
+Installed Java 18 and Node.js
 
 ## :wrench: Installation
 1. Clone git repository

@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    restart: on-failure
+    environment:
+      IP: 192.168.31.230
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: quizengine
+      DB_PORT: 5432
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8081:8081"
+    environment:
+      BACK_URL: "192.168.31.230:8080"
+    restart: on-failure
+  postgres:
+    container_name: postgres
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: quizengine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+

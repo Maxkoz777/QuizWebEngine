@@ -6,7 +6,7 @@
   >
     <div>
       <div class="text-h6">{{ name }}</div>
-      <div class="text-subtitle3 text-grey-8">0 questions</div>
+      <div class="text-subtitle3 text-grey-8">{{ quizCount }} questions</div>
     </div>
     <div>
       <q-btn
@@ -32,6 +32,10 @@ export default {
       required: true
     },
     id: {
+      type: Number,
+      required: true
+    },
+    quizCount: {
       type: Number,
       required: true
     }

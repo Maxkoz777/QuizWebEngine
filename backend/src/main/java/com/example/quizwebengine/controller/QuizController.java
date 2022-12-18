@@ -29,7 +29,8 @@ public class QuizController {
     }
 
     @PostMapping("/quiz")
-    public ResponseEntity<?> createNewQuiz(HttpServletRequest request, @Valid @RequestBody QuizCreationRequest quizCreation) {
+    public ResponseEntity<?> createNewQuiz(HttpServletRequest request,
+                                           @Valid @RequestBody QuizCreationRequest quizCreation) {
         try {
             Long userId = (Long) request.getAttribute(JWTAuthenticationFilter.USER_ID_KEY);
             Quiz quiz = new Quiz(quizCreation.getName());

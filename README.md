@@ -35,7 +35,7 @@ reliability and availability of system, increasing performance and functionality
 - **Deploy:** Heroku, git
 
 ## :heavy_exclamation_mark: Prerequisites
-Installed Java 11 and Node.js
+Installed Java 18 and Node.js
 
 ## :wrench: Installation
 1. Clone git repository
@@ -47,6 +47,9 @@ Installed Java 11 and Node.js
 4. Open directory Backend as maven project and start, open terminal and execute `mvn clean install`
 5. Open directory Frontend, Open terminal and write `npm install`, after that `quasar dev`
 6. Open `localhost:8081`
+
+## :ferry: Docker compose
+If you want to run services, use `docker-compose up -build -d` command
 
 ## :bookmark_tabs: Requirements
 Check [Requirements](/documentation/Requirements.md) file to find:
@@ -70,6 +73,7 @@ Check [Architecture](/documentation/Architecture.md) file to find:
 ![Lint](/documentation/diagrams/lint.png)
 - Test coverage\
 ![Test coverage](/documentation/diagrams/test_coverage.png)
+- Used [code style](/documentation/CodeStyle.md)
 
 ## :link: Links
 - [Swagger](https://quizwebengineback.herokuapp.com/swagger-ui.html)
@@ -78,6 +82,18 @@ Check [Architecture](/documentation/Architecture.md) file to find:
 
 ## :movie_camera: Demo
 ![Demo](/documentation/diagrams/Demo.gif)
+
+## :pencil2: Contributing
+If you have a suggestion that would make this better, please fork the repo and create a pull request:
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## :lock: License
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 ## :v: Credits
 This project was done by :

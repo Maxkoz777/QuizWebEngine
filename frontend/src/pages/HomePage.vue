@@ -1,15 +1,15 @@
 <template>
   <div class="fullscreen main-container" v-if="!pending">
-    <home-app-bar-layout/>
-    <router-view/>
+    <home-app-bar-layout />
+    <router-view />
   </div>
   <div v-else>
-    <loading-frame/>
+    <loading-frame />
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 import HomeAppBarLayout from "app/layouts/UserPage/HomeAppBarLayout";
 import LoadingFrame from "components/Loading/LoadingFrameFullSize";
 
@@ -18,29 +18,29 @@ export default {
   data() {
     return {
       pending: true
-    }
+    };
   },
-  components: {LoadingFrame, HomeAppBarLayout},
+  components: { LoadingFrame, HomeAppBarLayout },
   async created() {
-    this.user = await this.fetchUserData()
-    this.pending = false
-    !this.user ? this.$router.push('/main') : ''
+    this.user = await this.fetchUserData();
+    this.pending = false;
+    !this.user ? this.$router.push("/main") : "";
   },
   methods: {
     ...mapActions({
-      fetchUserData: 'homeModule/fetchUserData'
+      fetchUserData: "homeModule/fetchUserData"
     })
   },
   computed: {
     ...mapGetters({
-      userData: 'homeModule/userData'
+      userData: "homeModule/userData"
     })
   }
-}
+};
 </script>
 
 <style scoped>
-.main-container{
+.main-container {
   display: grid;
   grid-template-rows: 8% 92%;
 }

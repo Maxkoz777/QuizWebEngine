@@ -1,17 +1,28 @@
 <template>
-  <q-card-section class="quiz-field row items-center justify-between cursor-pointer" @click="visitQuiz(id)" v-ripple>
+  <q-card-section
+    class="quiz-field row items-center justify-between cursor-pointer"
+    @click="visitQuiz(id)"
+    v-ripple
+  >
     <div>
       <div class="text-h6">{{ name }}</div>
       <div class="text-subtitle3 text-grey-8">0 questions</div>
     </div>
     <div>
-      <q-btn round flat icon="delete" class="icon-color q-ml-xs" size="lg" @click.stop="onDelete"/>
+      <q-btn
+        round
+        flat
+        icon="delete"
+        class="icon-color q-ml-xs"
+        size="lg"
+        @click.stop="onDelete"
+      />
     </div>
   </q-card-section>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   name: "QuizListItem",
@@ -27,15 +38,13 @@ export default {
   },
   methods: {
     ...mapActions({
-      visitQuiz: 'homeModule/visitQuiz'
+      visitQuiz: "homeModule/visitQuiz"
     }),
     onDelete() {
-      this.$emit('deleteQuiz', this.id)
-    },
+      this.$emit("deleteQuiz", this.id);
+    }
   }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

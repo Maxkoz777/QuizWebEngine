@@ -1,13 +1,11 @@
 <template>
-  <q-form
-    @submit="onCreate"
-  >
+  <q-form @submit="onCreate">
     <div class="quiz-form-container">
       <div class="q-pr-md">
         <q-input
           label="Quiz name"
           v-model="name"
-          :rules="[ val => val && val.length > 0 || 'Please type quiz name']"
+          :rules="[val => (val && val.length > 0) || 'Please type quiz name']"
         />
       </div>
       <div class="column justify-center">
@@ -24,19 +22,19 @@ export default {
   name: "CreateQuizForm",
   data() {
     return {
-      name: ''
-    }
+      name: ""
+    };
   },
   methods: {
     async onCreate() {
-      if ( await this.$emit('createQuiz', this.name)) {
-        console.log('quiz created')
+      if (await this.$emit("createQuiz", this.name)) {
+        console.log("quiz created");
       } else {
-        console.log('error')
+        console.log("error");
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

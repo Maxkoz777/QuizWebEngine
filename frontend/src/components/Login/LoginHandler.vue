@@ -1,6 +1,6 @@
 <template>
   <div>
-    <login-button/>
+    <login-button />
   </div>
 </template>
 
@@ -9,10 +9,8 @@ import LoginButton from "components/Login/LoginButton";
 
 export default {
   name: "LoginHandler",
-  components: {LoginButton}
-}
+  components: { LoginButton }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

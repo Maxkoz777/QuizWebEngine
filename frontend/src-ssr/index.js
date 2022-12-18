@@ -11,35 +11,36 @@
  *   "src-ssr/extension.js"
  */
 
-const express = require('express')
-const compression = require('compression')
+const express = require("express");
+const compression = require("compression");
 
-const ssr = require('quasar-ssr')
-const extension = require('./extension')
-const app = express()
-const port = process.env.PORT || 3000
+const ssr = require("quasar-ssr");
+const extension = require("./extension");
+const app = express();
+const port = process.env.PORT || 3000;
 
-const serve = (path, cache) => express.static(ssr.resolveWWW(path), {
-  maxAge: cache ? 1000 * 60 * 60 * 24 * 30 : 0
-})
+const serve = (path, cache) =>
+  express.static(ssr.resolveWWW(path), {
+    maxAge: cache ? 1000 * 60 * 60 * 24 * 30 : 0
+  });
 
 // gzip
-app.use(compression({ threshold: 0 }))
+app.use(compression({ threshold: 0 }));
 
 // serve this with no cache, if built with PWA:
 if (ssr.settings.pwa) {
-  app.use(ssr.resolveUrl('/service-worker.js'), serve('service-worker.js'))
+  app.use(ssr.resolveUrl("/service-worker.js"), serve("service-worker.js"));
 }
 
 // serve "www" folder
-app.use(ssr.resolveUrl('/'), serve('.', true))
+app.use(ssr.resolveUrl("/"), serve(".", true));
 
 // we extend the custom common dev & prod parts here
-extension.extendApp({ app, ssr })
+extension.extendApp({ app, ssr });
 
 // this should be last get(), rendering with SSR
-app.get(ssr.resolveUrl('*'), (req, res) => {
-  res.setHeader('Content-Type', 'text/html')
+app.get(ssr.resolveUrl("*"), (req, res) => {
+  res.setHeader("Content-Type", "text/html");
 
   // SECURITY HEADERS
   // read more about headers here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
@@ -74,31 +75,28 @@ app.get(ssr.resolveUrl('*'), (req, res) => {
   ssr.renderToString({ req, res }, (err, html) => {
     if (err) {
       if (err.url) {
-        if (err.code) res.redirect(err.code, err.url)
-        else res.redirect(err.url)
-      }
-      else if (err.code === 404) {
+        if (err.code) res.redirect(err.code, err.url);
+        else res.redirect(err.url);
+      } else if (err.code === 404) {
         // Should reach here only if no "catch-all" route
         // is defined in /src/routes
-        res.status(404).send('404 | Page Not Found')
-      }
-      else {
+        res.status(404).send("404 | Page Not Found");
+      } else {
         // Render Error Page or
         // create a route (/src/routes) for an error page and redirect to it
-        res.status(500).send('500 | Internal Server Error')
+        res.status(500).send("500 | Internal Server Error");
         if (ssr.settings.debug) {
-          console.error(`500 on ${req.url}`)
-          console.error(err)
-          console.error(err.stack)
+          console.error(`500 on ${req.url}`);
+          console.error(err);
+          console.error(err.stack);
         }
       }
+    } else {
+      res.send(html);
     }
-    else {
-      res.send(html)
-    }
-  })
-})
+  });
+});
 
 app.listen(port, () => {
-  console.log(`Server listening at port ${port}`)
-})
+  console.log(`Server listening at port ${port}`);
+});

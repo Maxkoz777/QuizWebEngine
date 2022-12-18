@@ -1,6 +1,6 @@
 <template>
   <div>
-    <sign-up-button/>
+    <sign-up-button />
   </div>
 </template>
 
@@ -9,10 +9,8 @@ import SignUpButton from "components/SignUp/SignUpButton";
 
 export default {
   name: "SignUpHandler",
-  components: {SignUpButton}
-}
+  components: { SignUpButton }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

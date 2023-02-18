@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID;
+import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_USER_WITH_SUCH_ID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public long createQuiz(Quiz quiz, Long userId) throws QuizException {
-        User user = userRepository.findUserById(userId).orElseThrow(() -> new QuizException(NO_QUIZ_WITH_SUCH_ID));
+        User user = userRepository.findUserById(userId).orElseThrow(() -> new QuizException(NO_USER_WITH_SUCH_ID));
         quiz.setUser(user);
         return quizRepository.save(quiz).getId();
     }

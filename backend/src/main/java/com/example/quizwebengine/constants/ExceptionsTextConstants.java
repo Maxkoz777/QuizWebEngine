@@ -1,11 +1,11 @@
 package com.example.quizwebengine.constants;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public class ExceptionsTextConstants {
 
-    public static final String NO_QUIZ_WITH_SUCH_ID = "No quiz with such id";
+    public final String NO_QUIZ_WITH_SUCH_ID = "No quiz with such id";
+    public final String NO_USER_WITH_SUCH_ID = "No user with such id";
 
 }

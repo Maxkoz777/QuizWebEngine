@@ -2,11 +2,13 @@ package com.example.quizwebengine.payload.response;
 
 import com.example.quizwebengine.model.quiz.Question;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class QuizDataResponse {
 
     private long quizId;

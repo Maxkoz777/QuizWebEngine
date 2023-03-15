@@ -6,6 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    run: cd frontend
     strategy:
       matrix:
         node-version: [ 15.x, 16.x ]

@@ -50,7 +50,7 @@ class QuizServiceTest {
         when(userRepository.findUserById(1L)).thenReturn(java.util.Optional.of(user));
         when(quizRepository.save(quiz)).thenReturn(quiz);
 
-        Long quizResponseId =  service.createQuiz(quiz, user.getId());
+        Long quizResponseId =  service.createQuizForUser(quiz, user.getId());
 
         assertAll(
                 () -> verify(userRepository).findUserById(1L),

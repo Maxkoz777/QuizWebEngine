@@ -55,7 +55,7 @@ class QuizServiceTestcontainersTests {
         long userId = userRepository.save(stubUser()).getId();
         assertEquals(0, quizService.getListOfQuizzes(userId).size());
         for (int i = 0; i < QUIZZES; i++) {
-            quizService.createQuiz(new Quiz(), userId);
+            quizService.createQuizForUser(new Quiz(), userId);
         }
         assertEquals(QUIZZES, quizService.getListOfQuizzes(userId).size());
     }

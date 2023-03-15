@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${IP:localhost}:${DB_PORT:5432}/${DB_NAME:quizengine}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: update
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+opentdb:
+  baseUrl: ${EXTERNAL_API_URL:https://opentdb.com/api.php?amount=10}

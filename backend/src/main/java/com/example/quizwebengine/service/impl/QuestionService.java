@@ -1,5 +1,6 @@
 package com.example.quizwebengine.service.impl;
 
+import com.example.quizwebengine.constants.ExceptionsTextConstants;
 import com.example.quizwebengine.exceptions.QuizException;
 import com.example.quizwebengine.model.quiz.Answer;
 import com.example.quizwebengine.model.quiz.Question;
@@ -10,16 +11,13 @@ import com.example.quizwebengine.payload.response.QuestionResponse;
 import com.example.quizwebengine.repository.AnswerRepository;
 import com.example.quizwebengine.repository.QuestionRepository;
 import com.example.quizwebengine.repository.QuizRepository;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID;
 
 @Service
 @RequiredArgsConstructor
@@ -29,11 +27,11 @@ public class QuestionService {
     private final QuizRepository quizRepository;
     private final AnswerRepository answerRepository;
 
-    public Long createQuestion(QuestionRequest questionRequest, Long quizId) throws Exception {
+    public Long createQuestion(QuestionRequest questionRequest, Long quizId) {
         Question question = new Question();
         question.setText(questionRequest.getQuestion());
         createAnswersForQuestion(questionRequest, question);
-        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new Exception(NO_QUIZ_WITH_SUCH_ID));
+        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new RuntimeException(ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID));
         question.setQuiz(quiz);
         question = questionRepository.save(question);
         return question.getId();
@@ -41,7 +39,7 @@ public class QuestionService {
 
     public List<QuestionResponse> getListOfQuestionsForTheQuiz(Long quizId) throws Exception {
         return questionRepository.findAllByQuizId(quizId)
-                .orElseThrow(() -> new Exception(NO_QUIZ_WITH_SUCH_ID))
+                .orElseThrow(() -> new Exception(ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID))
                 .stream().map(question -> {
                     QuestionResponse questionResponse = new QuestionResponse();
                     questionResponse.setQuestionId(question.getId());

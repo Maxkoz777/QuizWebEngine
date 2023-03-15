@@ -2,10 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 
-// axios.defaults.baseURL = 'http://localhost:8080/'
-axios.defaults.baseURL = process.env.BACK_URL
-
-console.log('back url:',  process.env.BACK_URL)
+axios.defaults.baseURL = process.env.BACK_URL || "http://192.168.31.230:8080"
 
 
 axios.defaults.headers.common['Authorization'] ='Bearer' + localStorage.getItem('token')

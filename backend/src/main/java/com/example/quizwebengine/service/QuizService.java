@@ -13,7 +13,7 @@ public interface QuizService {
      * @return id of created quiz
      * @throws QuizException incorrect quiz
      */
-    long createQuiz(Quiz quiz, Long userId) throws QuizException;
+    long createQuizForUser(Quiz quiz, Long userId) throws QuizException;
 
     /**
      *
@@ -45,5 +45,11 @@ public interface QuizService {
      * @throws QuizException no user found
      */
     List<Quiz> getListOfQuizzes(long userId) throws QuizException;
+
+    /**
+     *
+     * @return daily quiz
+     */
+    Quiz getDailyQuiz();
 
 }

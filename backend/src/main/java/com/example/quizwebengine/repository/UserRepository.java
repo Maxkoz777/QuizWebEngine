@@ -1,9 +1,8 @@
 package com.example.quizwebengine.repository;
 
 import com.example.quizwebengine.model.user_info.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

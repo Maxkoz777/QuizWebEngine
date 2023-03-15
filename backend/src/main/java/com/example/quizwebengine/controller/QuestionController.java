@@ -6,16 +6,24 @@ import com.example.quizwebengine.payload.response.MessageResponse;
 import com.example.quizwebengine.payload.response.QuestionCreationResponse;
 import com.example.quizwebengine.payload.response.QuestionResponse;
 import com.example.quizwebengine.service.impl.QuestionService;
+import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SuppressWarnings("java:S1452")
 @RestController
 @CrossOrigin
+@RequestMapping("question")
 public class QuestionController {
 
     private final QuestionService questionService;
@@ -25,7 +33,7 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
-    @PostMapping("/question/{quizId}")
+    @PostMapping("/{quizId}")
     public ResponseEntity<?> createQuestion(
             @Valid @RequestBody QuestionRequest questionRequest,
             @PathVariable Long quizId) {
@@ -34,12 +42,12 @@ public class QuestionController {
                     questionService.createQuestion(questionRequest, quizId)
             );
             return ResponseEntity.ok(questionCreationResponse);
-        } catch (Exception e) {
+        } catch (Throwable e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
     }
 
-    @GetMapping("/question/{quizId}/list")
+    @GetMapping("/{quizId}/list")
     public ResponseEntity<?> getListOfQuestions(@PathVariable Long quizId) {
         try {
             List<QuestionResponse> questionResponseList = questionService.getListOfQuestionsForTheQuiz(quizId);
@@ -49,7 +57,7 @@ public class QuestionController {
         }
     }
 
-    @GetMapping("/question/{questionId}")
+    @GetMapping("/{questionId}")
     public ResponseEntity<?> getDataAboutQuestion(@PathVariable(required = true) Long questionId) {
         try {
             QuestionResponse questionResponse = questionService.getDataAboutQuestion(questionId);
@@ -59,7 +67,7 @@ public class QuestionController {
         }
     }
 
-    @PutMapping("/question/{questionId}")
+    @PutMapping("/{questionId}")
     public ResponseEntity<?> updateDataAboutQuestion(
             @Valid @RequestBody QuestionRequest questionRequest,
             @PathVariable Long questionId) {
@@ -71,7 +79,7 @@ public class QuestionController {
         }
     }
 
-    @DeleteMapping("/question/{questionId}")
+    @DeleteMapping("/{questionId}")
     public ResponseEntity<?> deleteDataAboutQuestion(@PathVariable Long questionId) {
         try {
             questionService.deleteQuestion(questionId);
@@ -81,7 +89,7 @@ public class QuestionController {
         }
     }
 
-    @GetMapping("/question/{questionId}/correctAnswer")
+    @GetMapping("/{questionId}/correctAnswer")
     public ResponseEntity<?> checkCorrectnessOfAnswer(@PathVariable Long questionId) {
         try {
             return ResponseEntity.ok(new CorrectAnswerResponse(questionService.getCorrectAnswer(questionId)));

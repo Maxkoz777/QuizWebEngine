@@ -1,10 +1,9 @@
 package com.example.quizwebengine.validators;
 
 import com.example.quizwebengine.annotations.ValidEmail;
-
+import java.util.regex.Pattern;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.regex.Pattern;
 
 public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
 

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,9 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80cfa9cd-633d-441d-911b-7061882f959d" name="Default Changelist" comment="docker-compose.yml added">
+    <list default="true" id="80cfa9cd-633d-441d-911b-7061882f959d" name="Default Changelist" comment="test action">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/frontend.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/frontend.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/boot/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/boot/axios.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,17 +42,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/user/Documents/Innopolis/QuizWebEngine&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/user/Documents/Innopolis/QuizWebEngine",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
@@ -128,7 +134,8 @@
       <workItem from="1632076659096" duration="6000" />
       <workItem from="1632576804384" duration="28000" />
       <workItem from="1671287066998" duration="28000" />
-      <workItem from="1671287123371" duration="10107000" />
+      <workItem from="1671287123371" duration="2845000" />
+      <workItem from="1678908503487" duration="1386000" />
     </task>
     <task id="LOCAL-00001" summary="Init frontend">
       <created>1629969319119</created>
@@ -144,14 +151,63 @@
       <option name="project" value="LOCAL" />
       <updated>1630325932770</updated>
     </task>
-    <task id="LOCAL-00003" summary="docker-compose.yml added">
-      <created>1671290560770</created>
+    <task id="LOCAL-00003" summary="test action">
+      <created>1678908713889</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1671290560770</updated>
+      <updated>1678908713889</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="test action">
+      <created>1678909092016</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1678909092016</updated>
+    </task>
+    <task id="LOCAL-00005" summary="test action">
+      <created>1678909184272</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1678909184272</updated>
+    </task>
+    <task id="LOCAL-00006" summary="test action">
+      <created>1678909273453</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678909273453</updated>
+    </task>
+    <task id="LOCAL-00007" summary="test action">
+      <created>1678909330468</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1678909330468</updated>
+    </task>
+    <task id="LOCAL-00008" summary="test action">
+      <created>1678909419743</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1678909419743</updated>
+    </task>
+    <task id="LOCAL-00009" summary="test action">
+      <created>1678909573889</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1678909573889</updated>
+    </task>
+    <task id="LOCAL-00010" summary="test action">
+      <created>1678909750131</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678909750131</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +227,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init frontend" />
     <MESSAGE value="update readme" />
-    <MESSAGE value="docker-compose.yml added" />
-    <option name="LAST_COMMIT_MESSAGE" value="docker-compose.yml added" />
+    <MESSAGE value="test action" />
+    <option name="LAST_COMMIT_MESSAGE" value="test action" />
   </component>
 </project>

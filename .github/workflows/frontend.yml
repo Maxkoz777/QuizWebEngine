@@ -4,12 +4,16 @@ on:
       - 'frontend/**'
       - '.github/workflows/frontend.yml'
 jobs:
- - name: Use joshstrange/setup-quasar
-   uses: joshstrange/setup-quasar@v1
-   with:
-     cordova-version: 9
-
-- name: Build
-  run: |
-    quasar build -m cordova -T ios     
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 15.x, 16.x ]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm test:unit:coverage
 

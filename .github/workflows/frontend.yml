@@ -17,5 +17,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Tests
         working-directory: ./frontend
-        run: npm run test:unit:coverage
+        run: |
+          npm i
+          npm run test:unit:coverage
 

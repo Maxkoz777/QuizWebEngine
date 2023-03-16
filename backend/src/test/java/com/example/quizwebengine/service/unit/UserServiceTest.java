@@ -1,4 +1,4 @@
-package com.example.quizwebengine.service;
+package com.example.quizwebengine.service.unit;
 
 import com.example.quizwebengine.dto.UserDTO;
 import com.example.quizwebengine.mapper.UserMapper;

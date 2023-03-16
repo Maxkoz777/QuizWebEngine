@@ -1,4 +1,4 @@
-package com.example.quizwebengine.service;
+package com.example.quizwebengine.service.unit;
 
 import com.example.quizwebengine.model.quiz.Quiz;
 import com.example.quizwebengine.model.user_info.User;

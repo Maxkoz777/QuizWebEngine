@@ -39,6 +39,7 @@ class QuizServiceTestcontainersTests {
         registry.add("spring.datasource.url", postrgresContainer::getJdbcUrl);
         registry.add("spring.datasource.password", postrgresContainer::getPassword);
         registry.add("spring.datasource.username", postrgresContainer::getUsername);
+        registry.add("spring.datasource.driverClassName", postrgresContainer::getDriverClassName);
     }
 
     private User stubUser() {

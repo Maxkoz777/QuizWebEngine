@@ -1,5 +1,6 @@
 <template>
-  <q-dialog v-model="isOpenRoute">
+  <q-dialog v-model="isOpenRoute" data-test-id="dialogSignUp"
+  >
     <q-card>
       <q-card-section class="row justify-between">
         <div class="text-h6">Registration</div>
@@ -12,6 +13,7 @@
         <q-card-section class="registration-form-container">
           <div class="row q-gutter-md q-pt-md">
             <q-input
+              data-test-id="firstnameSignUp"
               filled
               v-model="newUserData.firstname"
               label="First name"
@@ -22,6 +24,7 @@
               ]"
             />
             <q-input
+              data-test-id="lastnameSignUp"
               filled
               v-model="newUserData.lastname"
               label="Last name"
@@ -34,6 +37,7 @@
           </div>
           <div class="row q-gutter-md q-pt-md">
             <q-input
+              data-test-id="emailSignUp"
               filled
               v-model="newUserData.email"
               label="Email"
@@ -45,6 +49,7 @@
               ]"
             />
             <q-input
+              data-test-id="usernameSignUp"
               filled
               v-model="newUserData.username"
               label="Username"
@@ -57,6 +62,7 @@
           </div>
           <div class="row q-gutter-md q-pt-md">
             <q-input
+              data-test-id="passwordSignUp"
               filled
               v-model="newUserData.password"
               label="Password"
@@ -68,6 +74,7 @@
               ]"
             />
             <q-input
+              data-test-id="confirmPasswordSignUp"
               filled
               v-model="newUserData.confirmPassword"
               label="Confirm Password"
@@ -86,7 +93,12 @@
 
         <q-card-actions align="right" class="q-pa-md">
           <q-btn flat label="Reset" type="Reset" class="reset-button" />
-          <q-btn flat label="Sign Up" type="submit" class="accept-button" />
+          <q-btn
+            data-test-id="confirmSignUp"
+            flat
+            label="Sign Up"
+            type="submit"
+            class="accept-button"/>
         </q-card-actions>
       </q-form>
     </q-card>

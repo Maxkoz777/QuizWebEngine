@@ -5,8 +5,8 @@ const PAGE_URL_TEST = 'http://localhost:8081'
 let driver
 
 const user = {
-    username: 'afa5',
-    email: 'afa5@gmail.com',
+    username: 'afa6',
+    email: 'afa6@gmail.com',
     password: 'qwerty'
 }
 

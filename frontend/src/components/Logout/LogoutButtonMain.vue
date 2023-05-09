@@ -1,5 +1,5 @@
 <template>
-  <q-btn @click="logout" class="accept-button" flat>
+  <q-btn data-test-id="logoutFromUser" @click="logout" class="accept-button" flat>
     Signout
   </q-btn>
 </template>

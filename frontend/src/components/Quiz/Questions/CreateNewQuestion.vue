@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    data-test-id="createQuestionSection"
     round
     icon="add"
     class="createQuestionButton q-mb-sm q-ml-md"

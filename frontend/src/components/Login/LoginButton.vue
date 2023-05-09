@@ -1,5 +1,10 @@
 <template>
-  <q-btn class="login-button" @click="openLoginDialog" rounded flat>
+  <q-btn
+    data-test-id="signInButton"
+    class="login-button"
+    @click="openLoginDialog"
+    rounded flat
+  >
     login
   </q-btn>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="fullscreen index-page-color">
+  <div data-test-id="dashboard" class="fullscreen index-page-color">
     <!-- Sign In/ Sign Up routing   -->
     <router-view/>
     <app-bar-layout/>

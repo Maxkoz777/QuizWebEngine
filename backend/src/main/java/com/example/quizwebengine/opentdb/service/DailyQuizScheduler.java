@@ -36,11 +36,11 @@ public class DailyQuizScheduler {
         updateDailyQuiz();
     }
 
-    @PreDestroy
-    @Transactional
-    public void removeAllPersistedQuizzes() {
-        quizRepository.deleteAllByName(DAILY_QUIZ_NAME);
-    }
+//    @PreDestroy
+//    @Transactional
+//    public void removeAllPersistedQuizzes() {
+//        quizRepository.deleteAllByName(DAILY_QUIZ_NAME);
+//    }
 
 
     private void updateDailyQuiz() {

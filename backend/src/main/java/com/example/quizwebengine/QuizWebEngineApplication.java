@@ -18,9 +18,9 @@ public class QuizWebEngineApplication {
         SpringApplication.run(QuizWebEngineApplication.class, args);
     }
 
-    @PostConstruct
-    public void init() {
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> dailyQuizScheduler.removeAllPersistedQuizzes()));
-    }
+//    @PostConstruct
+//    public void init() {
+//        Runtime.getRuntime().addShutdownHook(new Thread(() -> dailyQuizScheduler.removeAllPersistedQuizzes()));
+//    }
 
 }

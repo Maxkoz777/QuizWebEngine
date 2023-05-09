@@ -21,7 +21,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      BACK_URL: "backend:8080"
+      BACK_URL: "http://localhost:8080"
     restart: on-failure
     depends_on:
       - backend

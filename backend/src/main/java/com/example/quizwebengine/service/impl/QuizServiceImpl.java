@@ -3,6 +3,7 @@ package com.example.quizwebengine.service.impl;
 import com.example.quizwebengine.exceptions.QuizException;
 import com.example.quizwebengine.model.quiz.Quiz;
 import com.example.quizwebengine.model.user_info.User;
+import com.example.quizwebengine.opentdb.service.DailyQuizScheduler;
 import com.example.quizwebengine.repository.QuizRepository;
 import com.example.quizwebengine.repository.UserRepository;
 import com.example.quizwebengine.service.QuizService;
@@ -19,6 +20,7 @@ public class QuizServiceImpl implements QuizService {
 
     private final QuizRepository quizRepository;
     private final UserRepository userRepository;
+    private final DailyQuizScheduler dailyQuizScheduler;
 
     @Override
     public long createQuiz(Quiz quiz, Long userId) throws QuizException {
@@ -48,6 +50,11 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public List<Quiz> getListOfQuizzes(long userId) throws QuizException {
         return quizRepository.findAllByUserId(userId).orElseThrow(() -> new QuizException(NO_QUIZ_WITH_SUCH_ID));
+    }
+
+    @Override
+    public Quiz getDailyQuiz() {
+        return dailyQuizScheduler.getDailyQuiz();
     }
 
 }

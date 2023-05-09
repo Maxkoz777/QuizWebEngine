@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"See package.json => scripts for available tests.\" && exit 0",
-    "build": "npx quasar build -m ssr",
+    "build": "npx quasar build",
     "start": "node server.js",
     "prettier": "prettier --write ./src",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",

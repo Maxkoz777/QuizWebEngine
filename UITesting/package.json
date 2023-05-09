@@ -1,0 +1,14 @@
+{
+  "name": "uitesting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node src/index.js"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.9.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

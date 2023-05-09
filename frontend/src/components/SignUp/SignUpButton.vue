@@ -1,5 +1,6 @@
 <template>
-  <q-btn class="accept-button" @click="openSignUpDialog" unelevated rounded>
+  <q-btn class="accept-button" @click="openSignUpDialog"
+         unelevated rounded data-test-id="signUpButton">
     Sign up
   </q-btn>
 </template>

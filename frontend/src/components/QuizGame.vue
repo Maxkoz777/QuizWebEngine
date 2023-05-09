@@ -26,6 +26,7 @@
       <div
         v-for="answer in currentQuestion.answer"
         :key="answer.answerId"
+        data-test-id="quizGameQuestion"
         class="answer-item text-center shadow-2  q-pa-lg"
         @click="validateNotify(answer.answerId)"
       >

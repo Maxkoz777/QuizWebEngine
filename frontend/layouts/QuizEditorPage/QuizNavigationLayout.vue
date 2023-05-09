@@ -1,7 +1,7 @@
 <template>
   <div class="shadow-2 nav-menu-container" bordered style="overflow: hidden">
     <div class="q-pt-md">
-      <div class="q-pl-md text-bold quiz-id-title">
+      <div data-test-id="quizPIN" class="q-pl-md text-bold quiz-id-title">
         Quiz PIN: {{quizId}}
       </div>
       <q-tabs

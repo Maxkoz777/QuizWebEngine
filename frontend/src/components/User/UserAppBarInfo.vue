@@ -1,6 +1,6 @@
 <template>
   <div class="q-pr-sm row items-center">
-    <div class="username-text text-weight-medium">
+    <div data-test-id="userHomeName" class="username-text text-weight-medium">
       {{ username }}
     </div>
     <q-btn

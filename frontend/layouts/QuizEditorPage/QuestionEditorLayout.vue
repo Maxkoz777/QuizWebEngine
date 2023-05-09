@@ -6,16 +6,16 @@
       </div>
     </div>
     <div class="row q-pa-md q-gutter-md reverse">
-      <q-btn flat class="bordered-btn" @click="visitUserPage" no-caps>
+      <q-btn data-test-id="exitQuestion" flat class="bordered-btn" @click="visitUserPage" no-caps>
         Exit
       </q-btn>
-      <q-btn class="accept-button" flat no-caps @click="setEditMode(true)" v-if="!editMode && currentQuestion">
+      <q-btn data-test-id="editQuestion" class="accept-button" flat no-caps @click="setEditMode(true)" v-if="!editMode && currentQuestion">
         Edit
       </q-btn>
       <q-btn class="delete-button" flat no-caps @click="deleteAndClose" v-if="!editMode && currentQuestion">
         Delete
       </q-btn>
-      <q-btn class="accept-button" flat no-caps @click="closeEditModeAndUpdate()" v-if="editMode">Save changes</q-btn>
+      <q-btn data-test-id="acceptChanges" class="accept-button" flat no-caps @click="closeEditModeAndUpdate()" v-if="editMode">Save changes</q-btn>
       <q-btn class="bordered-button" flat no-caps @click="discardChanges()" v-if="editMode">Discard changes</q-btn>
     </div>
     <div class="question-container" v-if="currentQuestion">
@@ -28,6 +28,7 @@
               </div>
               <div v-else>
                 <q-input
+                  data-test-id="questionNameEdit"
                   dense
                   v-model="questionDataForChange.question"
                 />
@@ -53,10 +54,13 @@
               </div>
               <div v-else>
                 <q-input
+                  data-test-id="quizAnswerEditable"
                   v-model="questionDataForChange.answer[idx].answerText"
                   dense
                 />
-                <q-checkbox left-label v-model="questionDataForChange.answer[idx].isRight" label="Is correct"/>
+                <q-checkbox
+                  data-test-id="quizAnswerCheckbox"
+                  left-label v-model="questionDataForChange.answer[idx].isRight" label="Is correct"/>
               </div>
             </div>
           </div>

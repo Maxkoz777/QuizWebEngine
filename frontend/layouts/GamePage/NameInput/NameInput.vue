@@ -1,9 +1,9 @@
 <template>
   <div class="bg-white q-pa-lg name-input-container">
-    <q-input color="purple" label-color="dark-purple" class="name-input" v-model="name" filled label="ENTER USERNAME"
+    <q-input data-test-id="enterNameToPass" color="purple" label-color="dark-purple" class="name-input" v-model="name" filled label="ENTER USERNAME"
              @keydown.enter="setName(name)"
     />
-    <q-btn class="full-width name-button q-mt-sm" @click="setName(name)" unelevated>
+    <q-btn data-test-id="enterNameToPassConfirm" class="full-width name-button q-mt-sm" @click="setName(name)" unelevated>
       ENTER
     </q-btn>
   </div>

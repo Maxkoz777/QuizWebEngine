@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="isOpenRoute">
+  <q-dialog v-model="isOpenRoute" data-test-id="dialogSignIn">
     <q-card>
       <q-card-section class="row justify-between">
         <div class="text-h6">Login</div>
@@ -11,6 +11,7 @@
       <q-form @submit="onSubmit" @reset="resetNewUserData">
         <q-card-section class="login-form-container">
           <q-input
+            data-test-id="usernameSignIn"
             filled
             v-model="userData.username"
             label="Username"
@@ -21,6 +22,7 @@
             ]"
           />
           <q-input
+            data-test-id="passwordSignIn"
             filled
             type="password"
             v-model="userData.password"
@@ -36,7 +38,9 @@
 
         <q-card-actions align="right" class="q-pa-md">
           <q-btn flat label="Reset" type="Reset" class="reset-button" />
-          <q-btn flat label="Login" type="submit" class="accept-button" />
+          <q-btn
+            data-test-id="confirmSignIn"
+            flat label="Login" type="submit" class="accept-button" />
         </q-card-actions>
       </q-form>
     </q-card>

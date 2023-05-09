@@ -3,13 +3,16 @@
     <div class="quiz-form-container">
       <div class="q-pr-md">
         <q-input
+          data-test-id="createQuiz"
           label="Quiz name"
           v-model="name"
           :rules="[val => (val && val.length > 0) || 'Please type quiz name']"
         />
       </div>
       <div class="column justify-center">
-        <q-btn type="submit" class="accept-button" flat>
+        <q-btn
+          data-test-id="createQuizConfirm"
+          type="submit" class="accept-button" flat>
           Create quiz
         </q-btn>
       </div>

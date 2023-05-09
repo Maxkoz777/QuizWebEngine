@@ -3,8 +3,8 @@ import axios from 'axios'
 
 
 // axios.defaults.baseURL = 'http://localhost:8080/'
-axios.defaults.baseURL = process.env.BACK_URL
-
+axios.defaults.baseURL  = '192.168.31.230:8080'
+console.log(process.env)
 console.log('back url:',  process.env.BACK_URL)
 
 

@@ -7,9 +7,9 @@ RUN npm i -g add @quasar/cli
 COPY . .
 # build stage
 FROM develop-stage as build-stage
-RUN npm install
-RUN quasar build
+#RUN npm install
+#RUN quasar build
 EXPOSE 8081
 # production stage
-CMD ["npm", "start"]
+CMD ["quasar", "dev"]
 

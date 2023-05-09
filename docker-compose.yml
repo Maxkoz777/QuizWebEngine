@@ -10,7 +10,7 @@ services:
       - postgres
     restart: on-failure
     environment:
-      IP: 192.168.31.230
+      IP: postgres
       DB_USER: postgres
       DB_PASSWORD: password
       DB_NAME: quizengine
@@ -21,8 +21,10 @@ services:
     ports:
       - "8081:8081"
     environment:
-      BACK_URL: "192.168.31.230:8080"
+      BACK_URL: "backend:8080"
     restart: on-failure
+    depends_on:
+      - backend
   postgres:
     container_name: postgres
     image: postgres:alpine

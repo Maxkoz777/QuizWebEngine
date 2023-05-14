@@ -12,6 +12,13 @@
     />
     <quiz-enter-button       data-test-id="enterPINSubmit"
                              @clicked="submitPin" />
+    <q-btn
+      class="full-width quiz-entrance-button q-mt-sm"
+      unelevated
+      @click="enterDailyQuiz"
+    >
+      ENTER DAILY QUIZ
+    </q-btn>
   </div>
 </template>
 
@@ -30,12 +37,22 @@ export default {
   methods: {
     ...mapActions({
       validateQuizPin: "gameModule/validateQuizPin",
-      removeQuizData: "gameModule/removeQuizData"
+      removeQuizData: "gameModule/removeQuizData",
+      enterDailyQuizAction: "gameModule/enterDailyQuiz"
     }),
     async submitPin() {
       let result = await this.validateQuizPin(this.gamePin);
       if (result) {
         await this.$router.push(`/game/${this.gamePin}`);
+      } else {
+        this.showQuizEnterError();
+      }
+    },
+    async enterDailyQuiz() {
+      let result = await this.enterDailyQuizAction()
+      if (result) {
+        console.log('result:', result)
+        await this.$router.push(`/game/${result.gamePin}`);
       } else {
         this.showQuizEnterError();
       }

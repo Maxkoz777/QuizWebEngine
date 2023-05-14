@@ -13,6 +13,9 @@ export default {
     isFinished: true
   },
   actions: {
+    async enterDailyQuiz(context){
+
+    },
     async validateQuizPin(context, quizId) {
       try {
         const response = await axios.get(`quiz/${quizId}`);

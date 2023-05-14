@@ -13,6 +13,25 @@ export default {
     isFinished: true
   },
   actions: {
+    async enterDailyQuiz(context){
+      console.log('try')
+      try {
+        const response = await axios.get(`quiz/daily`);
+        console.log(response)
+        const questionList = [];
+        for (let question in response.data.questions) {
+          let questionData = await context.dispatch(
+            "fetchQuestion",
+            response.data.questions[question].questionId
+          );
+          questionList.push(questionData);
+        }
+        context.commit("setQuestions", questionList);
+        return response.data.quizId;
+      } catch (e) {
+        return false;
+      }
+    },
     async validateQuizPin(context, quizId) {
       try {
         const response = await axios.get(`quiz/${quizId}`);

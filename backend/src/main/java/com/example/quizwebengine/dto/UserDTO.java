@@ -1,8 +1,7 @@
 package com.example.quizwebengine.dto;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotEmpty;
+import lombok.Data;
 
 @Data
 public class UserDTO {

@@ -1,16 +1,27 @@
 package com.example.quizwebengine.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.example.quizwebengine.payload.request.LoginRequest;
 import com.example.quizwebengine.payload.request.QuizCreationRequest;
 import com.example.quizwebengine.payload.request.SignupRequest;
 import com.example.quizwebengine.payload.response.JWTTokenSuccessResponse;
 import com.example.quizwebengine.payload.response.QuizCreationResponse;
+import com.example.quizwebengine.payload.response.QuizDataResponse;
 import com.example.quizwebengine.security.JWTAuthenticationFilter;
 import com.example.quizwebengine.security.SecurityConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.javafaker.Faker;
 import io.jsonwebtoken.Jwts;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -29,11 +40,6 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles({"test"})
 @SpringBootTest
@@ -57,33 +63,41 @@ class QuizControllerTest {
         registry.add("spring.datasource.username", postrgresContainer::getUsername);
     }
 
-    @AfterEach
-    void tearDown() throws Exception {
+    @AfterAll
+    static void tearDown() {
         postrgresContainer.stop();
     }
 
-    private String token;
     private Long userId;
 
-    @BeforeEach
-    public void setup() throws Exception {
+    @BeforeAll
+    public static void beforeAll() {
         postrgresContainer.start();
-        mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-        token = getJWTToken().split(" ")[1];
-        userId = Long.parseLong(
-                (String) Jwts.parser()
-                .setSigningKey(SecurityConstants.SECRET)
-                .parseClaimsJws(token)
-                .getBody()
-                .get("id")
-        );
     }
 
     @DisplayName("Case: creation process")
     @Nested
     class CreationTestClass{
+
+
+        private final String username = "testCreationUsername";
+
+        @BeforeEach
+        public void setup() throws Exception {
+            mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+            String token = getJWTToken(username).split(" ")[1];
+            userId = Long.parseLong(
+                (String) Jwts.parser()
+                    .setSigningKey(SecurityConstants.SECRET)
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .get("id")
+            );
+        }
+
+
         @Test
-        @WithMockUser(username = "testuser", roles = {"USER"})
+        @WithMockUser(username = username, roles = {"USER"})
         void testCreateNewQuiz() throws Exception {
             String quizName = "Test Quiz";
             QuizCreationRequest request = new QuizCreationRequest();
@@ -104,6 +118,43 @@ class QuizControllerTest {
         }
     }
 
+    @DisplayName("Case: daily quiz retrieval process")
+    @Nested
+    class DailyQuizRetrievalTestClass{
+
+        private final String username = "testRetrievalUsername";
+
+        @BeforeEach
+        public void setup() throws Exception {
+            mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+            String token = getJWTToken(username).split(" ")[1];
+            userId = Long.parseLong(
+                (String) Jwts.parser()
+                    .setSigningKey(SecurityConstants.SECRET)
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .get("id")
+            );
+        }
+
+        @Test
+        @WithMockUser(username = username, roles = {"USER"})
+        void testRetrieveDailyQuiz() throws Exception {
+
+            Thread.sleep(5000L);
+            MvcResult mvcResult = mockMvc.perform(get("/quiz/daily")
+                                                      .requestAttr(JWTAuthenticationFilter.USER_ID_KEY, userId))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+            QuizDataResponse quizDataResponse = (QuizDataResponse) asStringObject(
+                mvcResult.getResponse().getContentAsString(),
+                QuizDataResponse.class
+            );
+            assertEquals(10, quizDataResponse.getQuestions().size());
+        }
+    }
+
     private static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);
@@ -112,7 +163,7 @@ class QuizControllerTest {
         }
     }
 
-    private static Object asStringObject(final String string, Class c) {
+    private static Object asStringObject(final String string, Class<?> c) {
         try {
             return new ObjectMapper().readValue(string, c);
         } catch (Exception e) {
@@ -120,30 +171,16 @@ class QuizControllerTest {
         }
     }
 
-//    @Test
-//    void getDataAboutQuiz() {
-//    }
-//
-//    @Test
-//    void updateQuizData() {
-//    }
-//
-//    @Test
-//    void deleteQuizData() {
-//    }
-//
-//    @Test
-//    void getListOfQuizzesForUser() {
-//    }
-
-    private String getJWTToken() throws Exception {
+    private String getJWTToken(String username) throws Exception {
+        Faker faker = new Faker();
         SignupRequest signupRequest = new SignupRequest();
-        signupRequest.setEmail("test@test.com");
-        signupRequest.setFirstname("Test");
-        signupRequest.setLastname("Testing");
-        signupRequest.setUsername("testuser");
-        signupRequest.setPassword("testpassword");
-        signupRequest.setConfirmPassword("testpassword");
+        signupRequest.setEmail(faker.internet().emailAddress());
+        signupRequest.setFirstname(faker.name().firstName());
+        signupRequest.setLastname(faker.name().lastName());
+        signupRequest.setUsername(username);
+        String stubPassword = faker.business().creditCardNumber();
+        signupRequest.setPassword(stubPassword);
+        signupRequest.setConfirmPassword(stubPassword);
 
         mockMvc.perform(post("/api/auth/signup")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -152,8 +189,8 @@ class QuizControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("testuser");
-        loginRequest.setPassword("testpassword");
+        loginRequest.setUsername(username);
+        loginRequest.setPassword(stubPassword);
 
         MvcResult mvcResult = mockMvc.perform(post("/api/auth/signin")
                         .contentType(MediaType.APPLICATION_JSON)

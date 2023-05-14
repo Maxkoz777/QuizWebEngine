@@ -2,12 +2,11 @@ package com.example.quizwebengine.payload.request;
 
 import com.example.quizwebengine.annotations.PasswordMatches;
 import com.example.quizwebengine.annotations.ValidEmail;
-import lombok.Data;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import lombok.Data;
 
 @Data
 @PasswordMatches

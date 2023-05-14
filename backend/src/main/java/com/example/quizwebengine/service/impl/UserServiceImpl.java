@@ -6,13 +6,12 @@ import com.example.quizwebengine.model.user_info.Role;
 import com.example.quizwebengine.model.user_info.User;
 import com.example.quizwebengine.payload.request.SignupRequest;
 import com.example.quizwebengine.repository.UserRepository;
+import java.security.Principal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.security.Principal;
 
 @Slf4j
 @Service

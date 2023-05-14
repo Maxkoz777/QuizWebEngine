@@ -51,8 +51,7 @@ export default {
     async enterDailyQuiz() {
       let result = await this.enterDailyQuizAction()
       if (result) {
-        console.log('result:', result)
-        await this.$router.push(`/game/${result.gamePin}`);
+        await this.$router.push(`/game/${result}`);
       } else {
         this.showQuizEnterError();
       }

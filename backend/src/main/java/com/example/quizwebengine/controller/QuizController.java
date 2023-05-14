@@ -19,6 +19,7 @@ import javax.validation.Valid;
 @SuppressWarnings("java:S1452")
 @RestController
 @CrossOrigin
+@RequestMapping("/quiz")
 public class QuizController {
 
     private final QuizServiceImpl quizService;
@@ -28,7 +29,7 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @PostMapping("/quiz")
+    @PostMapping()
     public ResponseEntity<?> createNewQuiz(HttpServletRequest request,
                                            @Valid @RequestBody QuizCreationRequest quizCreation) {
         try {
@@ -41,7 +42,7 @@ public class QuizController {
         }
     }
 
-    @GetMapping("/quiz/{quizId}")
+    @GetMapping("/{quizId}")
     @PreAuthorize("permitAll()")
     public ResponseEntity<?> getDataAboutQuiz(@PathVariable Long quizId) {
         try {
@@ -53,7 +54,7 @@ public class QuizController {
         }
     }
 
-    @PutMapping("/quiz/{quizId}")
+    @PutMapping("/{quizId}")
     public ResponseEntity<?> updateQuizData(@PathVariable Long quizId,
                                             @Valid @RequestBody QuizCreationRequest quizUpdateData) {
         try {
@@ -64,7 +65,7 @@ public class QuizController {
         }
     }
 
-    @DeleteMapping("/quiz/{quizId}")
+    @DeleteMapping("/{quizId}")
     public ResponseEntity<?> deleteQuizData(@PathVariable Long quizId) {
         try {
             quizService.deleteQuizData(quizId);
@@ -74,7 +75,7 @@ public class QuizController {
         }
     }
 
-    @GetMapping("/quiz/list")
+    @GetMapping("/list")
     public ResponseEntity<?> getListOfQuizzesForUser(HttpServletRequest request) {
         try {
             Long userId = (Long) request.getAttribute(JWTAuthenticationFilter.USER_ID_KEY);
@@ -82,6 +83,13 @@ public class QuizController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
+    }
+
+    @GetMapping("/daily")
+    public ResponseEntity<QuizDataResponse> getDailyQuiz() {
+        Quiz quiz = quizService.getDailyQuiz();
+        QuizDataResponse quizData = new QuizDataResponse(quiz.getId(), quiz.getName(), quiz.getQuestions());
+        return ResponseEntity.ok(quizData);
     }
 
 }

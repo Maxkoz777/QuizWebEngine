@@ -29,11 +29,11 @@ public class QuestionService {
     private final QuizRepository quizRepository;
     private final AnswerRepository answerRepository;
 
-    public Long createQuestion(QuestionRequest questionRequest, Long quizId) throws Exception {
+    public Long createQuestion(QuestionRequest questionRequest, Long quizId) {
         Question question = new Question();
         question.setText(questionRequest.getQuestion());
         createAnswersForQuestion(questionRequest, question);
-        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new Exception(NO_QUIZ_WITH_SUCH_ID));
+        Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new RuntimeException(NO_QUIZ_WITH_SUCH_ID));
         question.setQuiz(quiz);
         question = questionRepository.save(question);
         return question.getId();

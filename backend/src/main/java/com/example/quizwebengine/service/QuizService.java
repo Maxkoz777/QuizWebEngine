@@ -46,4 +46,10 @@ public interface QuizService {
      */
     List<Quiz> getListOfQuizzes(long userId) throws QuizException;
 
+    /**
+     *
+     * @return daily quiz
+     */
+    Quiz getDailyQuiz();
+
 }

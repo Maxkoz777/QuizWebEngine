@@ -1,6 +1,7 @@
 package com.example.quizwebengine.mapper;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.example.quizwebengine.dto.UserDTO;
 import com.example.quizwebengine.model.user_info.User;

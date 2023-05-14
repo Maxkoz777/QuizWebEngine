@@ -8,8 +8,6 @@ import com.example.quizwebengine.repository.QuizRepository;
 import com.example.quizwebengine.service.impl.QuestionService;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.PreDestroy;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -36,14 +34,7 @@ public class DailyQuizScheduler {
         updateDailyQuiz();
     }
 
-//    @PreDestroy
-//    @Transactional
-//    public void removeAllPersistedQuizzes() {
-//        quizRepository.deleteAllByName(DAILY_QUIZ_NAME);
-//    }
-
-
-    private void updateDailyQuiz() {
+    void updateDailyQuiz() {
         ExternalQuizDto externalQuiz = opentdbClient.getExternalQuiz();
         log.info("External quiz retrieved successfully");
         long quizId = quizRepository.save(new Quiz(DAILY_QUIZ_NAME)).getId();

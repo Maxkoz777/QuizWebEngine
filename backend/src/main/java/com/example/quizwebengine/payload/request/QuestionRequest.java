@@ -1,9 +1,8 @@
 package com.example.quizwebengine.payload.request;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
 import lombok.NoArgsConstructor;
 
 @Data

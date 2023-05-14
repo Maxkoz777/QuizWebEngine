@@ -1,5 +1,7 @@
 package com.example.quizwebengine.service.impl;
 
+import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID;
+
 import com.example.quizwebengine.exceptions.QuizException;
 import com.example.quizwebengine.model.quiz.Answer;
 import com.example.quizwebengine.model.quiz.Question;
@@ -10,16 +12,13 @@ import com.example.quizwebengine.payload.response.QuestionResponse;
 import com.example.quizwebengine.repository.AnswerRepository;
 import com.example.quizwebengine.repository.QuestionRepository;
 import com.example.quizwebengine.repository.QuizRepository;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID;
 
 @Service
 @RequiredArgsConstructor

@@ -1,5 +1,7 @@
 package com.example.quizwebengine.service.impl;
 
+import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID;
+
 import com.example.quizwebengine.exceptions.QuizException;
 import com.example.quizwebengine.model.quiz.Quiz;
 import com.example.quizwebengine.model.user_info.User;
@@ -7,12 +9,9 @@ import com.example.quizwebengine.opentdb.service.DailyQuizScheduler;
 import com.example.quizwebengine.repository.QuizRepository;
 import com.example.quizwebengine.repository.UserRepository;
 import com.example.quizwebengine.service.QuizService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
-import static com.example.quizwebengine.constants.ExceptionsTextConstants.NO_QUIZ_WITH_SUCH_ID;
 
 @Service
 @RequiredArgsConstructor

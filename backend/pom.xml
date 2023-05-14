@@ -17,6 +17,10 @@
         <java.version>18</java.version>
         <sonar.organization>maxkoz777-1</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <micrometer.version>1.10.5</micrometer.version>
+        <actuator.version>3.0.4</actuator.version>
+        <simpleclient.version>0.16.0</simpleclient.version>
+        <logstash-logback.version>7.3</logstash-logback.version>
     </properties>
     <dependencies>
         <dependency>
@@ -152,6 +156,21 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <version>${micrometer.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>${micrometer.version}</version>
         </dependency>
     </dependencies>
 

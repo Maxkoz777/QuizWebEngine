@@ -8,6 +8,9 @@ import com.example.quizwebengine.security.JWTTokenProvider;
 import com.example.quizwebengine.security.SecurityConstants;
 import com.example.quizwebengine.service.impl.UserServiceImpl;
 import com.example.quizwebengine.validators.ResponseErrorValidation;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +50,9 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
+    public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
+                                                   BindingResult bindingResult,
+                                                   HttpServletResponse response) {
         ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errors)) {
             return errors;
@@ -60,6 +65,14 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = SecurityConstants.TOKEN_PREFIX + jwtTokenProvider.generateToken(authentication);
+
+        Cookie jwtCookie = new Cookie("JWT_COOKIE", jwt);
+        jwtCookie.setHttpOnly(true);
+        jwtCookie.setSecure(true);
+        jwtCookie.setPath("/");
+        jwtCookie.setMaxAge(60000);
+
+        response.addCookie(jwtCookie);
 
         return ResponseEntity.ok(new JWTTokenSuccessResponse(true, jwt));
     }
